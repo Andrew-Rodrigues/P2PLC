@@ -1,21 +1,15 @@
 grammar P2;
 
-@parser::header{
-    import java.util.HashMap;  
-    import java.util.Scanner;
-    import java.lang.*;
-}
-
-@parser::members{
-
-}
-
-start: programBlocks END '.' EOF;
+startProgram: programBlocks END '.' EOF;
 
 programBlocks: statements *;
 
 statements:
-instVar
+start
+| varDef
+| constVar //optional
+| instVar
+| instBool
 | if
 | else
 | while
@@ -24,9 +18,41 @@ instVar
 | write
 ;
 
+start: PROGRAM VARNAME ';';
+
+varDef: VAR (variableInst | variableDec);
+
+variableInst: realInst | boolInst;
+realInst: VARNAME (',' VARNAME)* ':' REAL '=' expr ;
+boolInst: VARNAME  (',' VARNAME)* ':' BOOL '=' bexpr ;
+
+variableDec: realDec | boolDec;
+realDec: VARNAME (',' VARNAME)* ':' REAL;
+boolDec: VARNAME (',' VARNAME)* ':' BOOL;
 
 
+instVar: VARNAME ':=' expr ;
 
+instBool: VARNAME ':=' bexpr ;
+
+constVar: ;
+
+if: ;
+
+else: ;
+
+while: ;
+
+for: ;
+
+read: ;
+
+write: ;
+
+expr: 
+;
+
+bexpr: ;
 
 
 fragment A:('a'|'A');
@@ -82,6 +108,8 @@ EXPO : E X P;
 CASE : C A S E;
 OF : O F ;
 CONST : C O N S T;
+WHILE : W H I L E;
+FOR : F O R;
 VARNAME: [a-zA-Z_][a-zA-Z0-9_]*;
 NUM: ('0' .. '9')+ (('.'('0' .. '9')+)); 
 COMMENtLine : '(*' .*? '*)' -> skip; 
