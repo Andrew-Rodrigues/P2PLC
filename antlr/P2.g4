@@ -2,18 +2,18 @@ grammar P2;
 
 startProgram: programBlocks END '.' EOF;
 
-programBlocks: statements *;
+programBlocks: statements* ;
 
 statements:
 start
 | varDef
-| constVar //optional
+//| constVar //optional
 | instVar
 | instBool
-| if
-| else
-| while
-| for
+| ifBlock
+| elseBlock
+| whileBlock
+| forBlock
 | read
 | write
 ;
@@ -24,35 +24,56 @@ varDef: VAR (variableInst | variableDec);
 
 variableInst: realInst | boolInst;
 realInst: VARNAME (',' VARNAME)* ':' REAL '=' expr ;
-boolInst: VARNAME  (',' VARNAME)* ':' BOOL '=' bexpr ;
+boolInst: VARNAME  (',' VARNAME)*':' BOOL '=' expr ;
 
 variableDec: realDec | boolDec;
 realDec: VARNAME (',' VARNAME)* ':' REAL;
 boolDec: VARNAME (',' VARNAME)* ':' BOOL;
 
 
-instVar: VARNAME ':=' expr ;
+instVar: VARNAME ':=' expr ';';
 
-instBool: VARNAME ':=' bexpr ;
+instBool: VARNAME ':=' expr ';';
 
-constVar: ;
+//constVar: ;
 
-if: ;
+ifBlock: IF expr THEN BEGIN? statements* END?;
 
-else: ;
+elseBlock: ELSE BEGIN? statements* END?;
 
-while: ;
+whileBlock: WHILE expr DO BEGIN statements* END ';' ;
 
-for: ;
+forBlock: FOR instVar TO NUM DO BEGIN statements* END ';';
 
-read: ;
+read: READ '(' expr ')';
 
-write: ;
+write: WRITE '(' expr ')' ; //may need more definitions for write 
 
 expr: 
+'-' expr
+| EXPO expr
+| SQUAREROOT expr
+| NATLOG expr
+| SINE expr
+| COSINE expr
+| expr ('*' | '/' ) expr
+| expr ('+' | '-') expr
+| bexpr
+| atom
 ;
 
-bexpr: ;
+bexpr: 
+NOT bexpr
+| bexpr AND bexpr
+| bexpr OR bexpr
+;
+
+atom: 
+'(' expr ')'
+| NUM
+| (TRUE | FALSE)
+| VARNAME
+;
 
 
 fragment A:('a'|'A');
@@ -110,6 +131,8 @@ OF : O F ;
 CONST : C O N S T;
 WHILE : W H I L E;
 FOR : F O R;
+DO : D O ;
+TO : T O ;
 VARNAME: [a-zA-Z_][a-zA-Z0-9_]*;
 NUM: ('0' .. '9')+ (('.'('0' .. '9')+)); 
 COMMENtLine : '(*' .*? '*)' -> skip; 
