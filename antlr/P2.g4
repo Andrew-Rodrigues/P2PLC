@@ -140,4 +140,4 @@ VARNAME: [a-zA-Z_][a-zA-Z0-9_]*;
 NUM: ('0' .. '9')+ (('.'('0' .. '9')+)); 
 COMMENtLine : '(*' .*? '*)' -> skip; 
 CommentChunk: '{' .*? '}' -> skip;
-WS : [\t\r\n]+ -> skip ;
+WS : [ \t\r\n]+ -> skip ;
