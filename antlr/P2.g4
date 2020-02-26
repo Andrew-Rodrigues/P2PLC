@@ -19,24 +19,24 @@ instVar
 | write
 ;
 
-start: PROGRAM VARNAME ';';
+start: PROGRAM expr ';';
 
 varDef: (VAR (variableInst?  variableDec?));
 
 variableInst: inst+;
-inst: (VARNAME (',' VARNAME)* ':' realOrBool '=' expr ';');
+inst: (expr (',' expr)* ':' realOrBool '=' expr ';');
 
 variableDec: dec+;
-dec: (VARNAME (',' VARNAME)* ':' realOrBool ';');
+dec: (expr (',' expr)* ':' realOrBool ';');
 
 realOrBool: (REAL | BOOL);
 
 
-instVar: VARNAME ':=' expr ';';
+instVar: expr ':=' expr ';';
 
-forInst: VARNAME ':=' expr TO expr DO;
+forInst: expr ':=' expr expr expr;
 
-instBool: VARNAME ':=' expr ';';
+instBool: expr ':=' expr ';';
 
 ifBlock: IF expr THEN BEGIN? statements* END?;
 
@@ -72,6 +72,8 @@ NOT bexpr
 atom: 
 '(' expr ')'
 | NUM
+| DO
+| TO
 | (TRUE | FALSE)
 | VARNAME
 ;
