@@ -6,10 +6,9 @@ programBlocks: start varDef* BEGIN statements (statements)*;
 
 
 statements:
-//start
-//| varDef
 instVar
 | instBool
+| procedure
 | forInst
 | ifBlock
 | elseBlock
@@ -18,6 +17,8 @@ instVar
 | read
 | write
 ;
+
+procedure: PROCEDURE expr '(' variableDec* ')' ';' BEGIN statements (statements)* END ';' ;
 
 start: PROGRAM expr ';';
 
@@ -34,15 +35,15 @@ realOrBool: (REAL | BOOL);
 
 instVar: expr ':=' expr ';';
 
-forInst: expr ':=' expr expr expr;
+forInst: expr ':=' expr expr expr expr;
 
 instBool: expr ':=' expr ';';
 
-ifBlock: IF expr THEN BEGIN? statements* END?;
+ifBlock: IF expr THEN BEGIN statements* END;
 
-elseBlock: ELSE BEGIN? statements* END?;
+elseBlock: ELSE BEGIN statements* END;
 
-whileBlock: WHILE expr DO BEGIN statements (statements)* END ';' ;
+whileBlock: WHILE expr expr BEGIN statements (statements)* END ';' ;
 
 forBlock: FOR forInst BEGIN statements (statements)* END ';';
 
@@ -59,6 +60,7 @@ expr:
 | COSINE expr
 | expr ('*' | '/' ) expr
 | expr ('+' | '-') expr
+| expr '=' expr
 | bexpr
 | atom
 ;
@@ -107,6 +109,7 @@ fragment Y:('y'|'Y');
 fragment Z:('z'|'Z');
 
 DIV : D I V ;
+PROCEDURE: P R O C E D U R E;
 REAL: R E A L;
 BOOL: B O O L E A N;
 OR  : O R ;
@@ -140,4 +143,4 @@ VARNAME: [a-zA-Z_][a-zA-Z0-9_]*;
 NUM: ('0' .. '9')+ (('.'('0' .. '9')+)); 
 COMMENtLine : '(*' .*? '*)' -> skip; 
 CommentChunk: '{' .*? '}' -> skip;
-WS : [\t\r\n]+ -> skip ;
+WS : [ \t\r\n]+ -> skip ;
