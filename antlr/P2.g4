@@ -2,13 +2,14 @@ grammar P2;
 
 startProgram: programBlocks END '.' EOF;
 
-programBlocks: start varDef* BEGIN statements (statements)*;
+programBlocks: start varDef* function* BEGIN statements (statements)*;
 
 
 statements:
 instVar
 | instBool
 | procedure
+| function
 | forInst
 | ifBlock
 | elseBlock
@@ -17,6 +18,8 @@ instVar
 | read
 | write
 ;
+
+function: FUNCTION expr '('variableDec')' ':' realOrBool ';' varDef? BEGIN statements (statements)* END ';';
 
 procedure: PROCEDURE expr '(' variableDec* ')' ';' BEGIN statements (statements)* END ';' ;
 
@@ -28,10 +31,9 @@ variableInst: inst+;
 inst: (expr (',' expr)* ':' realOrBool '=' expr ';');
 
 variableDec: dec+;
-dec: (expr (',' expr)* ':' realOrBool ';');
+dec: (expr (',' expr)* ':' realOrBool ';'?);
 
 realOrBool: (REAL | BOOL);
-
 
 instVar: expr ':=' expr ';';
 
@@ -110,6 +112,7 @@ fragment Z:('z'|'Z');
 
 DIV : D I V ;
 PROCEDURE: P R O C E D U R E;
+FUNCTION: F U N C T I O N;
 REAL: R E A L;
 BOOL: B O O L E A N;
 OR  : O R ;
