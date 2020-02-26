@@ -87,25 +87,13 @@ public class P2BaseListener implements P2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRealInst(P2Parser.RealInstContext ctx) { }
+	@Override public void enterInst(P2Parser.InstContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRealInst(P2Parser.RealInstContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterBoolInst(P2Parser.BoolInstContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitBoolInst(P2Parser.BoolInstContext ctx) { }
+	@Override public void exitInst(P2Parser.InstContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -123,25 +111,25 @@ public class P2BaseListener implements P2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRealDec(P2Parser.RealDecContext ctx) { }
+	@Override public void enterDec(P2Parser.DecContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRealDec(P2Parser.RealDecContext ctx) { }
+	@Override public void exitDec(P2Parser.DecContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBoolDec(P2Parser.BoolDecContext ctx) { }
+	@Override public void enterRealOrBool(P2Parser.RealOrBoolContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBoolDec(P2Parser.BoolDecContext ctx) { }
+	@Override public void exitRealOrBool(P2Parser.RealOrBoolContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -154,6 +142,18 @@ public class P2BaseListener implements P2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitInstVar(P2Parser.InstVarContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterForInst(P2Parser.ForInstContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitForInst(P2Parser.ForInstContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

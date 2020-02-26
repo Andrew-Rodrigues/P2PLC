@@ -2,14 +2,15 @@ grammar P2;
 
 startProgram: programBlocks END '.' EOF;
 
-programBlocks: statements* ;
+programBlocks: start varDef* BEGIN statements (statements)*;
+
 
 statements:
-start
-| varDef
-//| constVar //optional
-| instVar
+//start
+//| varDef
+instVar
 | instBool
+| forInst
 | ifBlock
 | elseBlock
 | whileBlock
@@ -20,22 +21,22 @@ start
 
 start: PROGRAM VARNAME ';';
 
-varDef: VAR (variableInst | variableDec);
+varDef: (VAR (variableInst?  variableDec?));
 
-variableInst: realInst | boolInst;
-realInst: VARNAME (',' VARNAME)* ':' REAL '=' expr ;
-boolInst: VARNAME  (',' VARNAME)*':' BOOL '=' expr ;
+variableInst: inst+;
+inst: (VARNAME (',' VARNAME)* ':' realOrBool '=' expr ';');
 
-variableDec: realDec | boolDec;
-realDec: VARNAME (',' VARNAME)* ':' REAL;
-boolDec: VARNAME (',' VARNAME)* ':' BOOL;
+variableDec: dec+;
+dec: (VARNAME (',' VARNAME)* ':' realOrBool ';');
+
+realOrBool: (REAL | BOOL);
 
 
 instVar: VARNAME ':=' expr ';';
 
-instBool: VARNAME ':=' expr ';';
+forInst: VARNAME ':=' expr TO;
 
-//constVar: ;
+instBool: VARNAME ':=' expr ';';
 
 ifBlock: IF expr THEN BEGIN? statements* END?;
 
@@ -43,11 +44,11 @@ elseBlock: ELSE BEGIN? statements* END?;
 
 whileBlock: WHILE expr DO BEGIN statements* END ';' ;
 
-forBlock: FOR instVar TO NUM DO BEGIN statements* END ';';
+forBlock: FOR forInst expr DO BEGIN statements (statements)* END ';';
 
-read: READ '(' expr ')';
+read: READ '(' expr ')' ';';
 
-write: WRITE '(' expr ')' ; //may need more definitions for write 
+write: WRITE '(' expr ')'  ';'; //may need more definitions for write 
 
 expr: 
 '-' expr

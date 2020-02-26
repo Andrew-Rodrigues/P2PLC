@@ -67,25 +67,15 @@ public interface P2Listener extends ParseTreeListener {
 	 */
 	void exitVariableInst(P2Parser.VariableInstContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link P2Parser#realInst}.
+	 * Enter a parse tree produced by {@link P2Parser#inst}.
 	 * @param ctx the parse tree
 	 */
-	void enterRealInst(P2Parser.RealInstContext ctx);
+	void enterInst(P2Parser.InstContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link P2Parser#realInst}.
+	 * Exit a parse tree produced by {@link P2Parser#inst}.
 	 * @param ctx the parse tree
 	 */
-	void exitRealInst(P2Parser.RealInstContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link P2Parser#boolInst}.
-	 * @param ctx the parse tree
-	 */
-	void enterBoolInst(P2Parser.BoolInstContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link P2Parser#boolInst}.
-	 * @param ctx the parse tree
-	 */
-	void exitBoolInst(P2Parser.BoolInstContext ctx);
+	void exitInst(P2Parser.InstContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link P2Parser#variableDec}.
 	 * @param ctx the parse tree
@@ -97,25 +87,25 @@ public interface P2Listener extends ParseTreeListener {
 	 */
 	void exitVariableDec(P2Parser.VariableDecContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link P2Parser#realDec}.
+	 * Enter a parse tree produced by {@link P2Parser#dec}.
 	 * @param ctx the parse tree
 	 */
-	void enterRealDec(P2Parser.RealDecContext ctx);
+	void enterDec(P2Parser.DecContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link P2Parser#realDec}.
+	 * Exit a parse tree produced by {@link P2Parser#dec}.
 	 * @param ctx the parse tree
 	 */
-	void exitRealDec(P2Parser.RealDecContext ctx);
+	void exitDec(P2Parser.DecContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link P2Parser#boolDec}.
+	 * Enter a parse tree produced by {@link P2Parser#realOrBool}.
 	 * @param ctx the parse tree
 	 */
-	void enterBoolDec(P2Parser.BoolDecContext ctx);
+	void enterRealOrBool(P2Parser.RealOrBoolContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link P2Parser#boolDec}.
+	 * Exit a parse tree produced by {@link P2Parser#realOrBool}.
 	 * @param ctx the parse tree
 	 */
-	void exitBoolDec(P2Parser.BoolDecContext ctx);
+	void exitRealOrBool(P2Parser.RealOrBoolContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link P2Parser#instVar}.
 	 * @param ctx the parse tree
@@ -126,6 +116,16 @@ public interface P2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitInstVar(P2Parser.InstVarContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link P2Parser#forInst}.
+	 * @param ctx the parse tree
+	 */
+	void enterForInst(P2Parser.ForInstContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link P2Parser#forInst}.
+	 * @param ctx the parse tree
+	 */
+	void exitForInst(P2Parser.ForInstContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link P2Parser#instBool}.
 	 * @param ctx the parse tree
