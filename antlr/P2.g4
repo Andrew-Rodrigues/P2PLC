@@ -34,7 +34,7 @@ realOrBool: (REAL | BOOL);
 
 instVar: VARNAME ':=' expr ';';
 
-forInst: VARNAME ':=' expr TO;
+forInst: VARNAME ':=' expr TO expr DO;
 
 instBool: VARNAME ':=' expr ';';
 
@@ -42,9 +42,9 @@ ifBlock: IF expr THEN BEGIN? statements* END?;
 
 elseBlock: ELSE BEGIN? statements* END?;
 
-whileBlock: WHILE expr DO BEGIN statements* END ';' ;
+whileBlock: WHILE expr DO BEGIN statements (statements)* END ';' ;
 
-forBlock: FOR forInst expr DO BEGIN statements (statements)* END ';';
+forBlock: FOR forInst BEGIN statements (statements)* END ';';
 
 read: READ '(' expr ')' ';';
 
