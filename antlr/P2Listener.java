@@ -37,6 +37,26 @@ public interface P2Listener extends ParseTreeListener {
 	 */
 	void exitStatements(P2Parser.StatementsContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link P2Parser#function}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunction(P2Parser.FunctionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link P2Parser#function}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunction(P2Parser.FunctionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link P2Parser#procedure}.
+	 * @param ctx the parse tree
+	 */
+	void enterProcedure(P2Parser.ProcedureContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link P2Parser#procedure}.
+	 * @param ctx the parse tree
+	 */
+	void exitProcedure(P2Parser.ProcedureContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link P2Parser#start}.
 	 * @param ctx the parse tree
 	 */
@@ -197,15 +217,185 @@ public interface P2Listener extends ParseTreeListener {
 	 */
 	void exitWrite(P2Parser.WriteContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link P2Parser#expr}.
+	 * Enter a parse tree produced by the {@code equalsExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpr(P2Parser.ExprContext ctx);
+	void enterEqualsExpr(P2Parser.EqualsExprContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link P2Parser#expr}.
+	 * Exit a parse tree produced by the {@code equalsExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpr(P2Parser.ExprContext ctx);
+	void exitEqualsExpr(P2Parser.EqualsExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code cosineExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterCosineExpr(P2Parser.CosineExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code cosineExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitCosineExpr(P2Parser.CosineExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code addSubExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterAddSubExpr(P2Parser.AddSubExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code addSubExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitAddSubExpr(P2Parser.AddSubExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code greaterEqExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterGreaterEqExpr(P2Parser.GreaterEqExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code greaterEqExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitGreaterEqExpr(P2Parser.GreaterEqExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code natlogExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterNatlogExpr(P2Parser.NatlogExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code natlogExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitNatlogExpr(P2Parser.NatlogExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code sinExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterSinExpr(P2Parser.SinExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code sinExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitSinExpr(P2Parser.SinExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code sqrtExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterSqrtExpr(P2Parser.SqrtExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code sqrtExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitSqrtExpr(P2Parser.SqrtExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code atomExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterAtomExpr(P2Parser.AtomExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code atomExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitAtomExpr(P2Parser.AtomExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code lessExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterLessExpr(P2Parser.LessExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code lessExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitLessExpr(P2Parser.LessExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code negateExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterNegateExpr(P2Parser.NegateExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code negateExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitNegateExpr(P2Parser.NegateExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code greaterExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterGreaterExpr(P2Parser.GreaterExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code greaterExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitGreaterExpr(P2Parser.GreaterExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code mulDicModExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterMulDicModExpr(P2Parser.MulDicModExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code mulDicModExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitMulDicModExpr(P2Parser.MulDicModExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code expoExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpoExpr(P2Parser.ExpoExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expoExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpoExpr(P2Parser.ExpoExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code boolExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolExpr(P2Parser.BoolExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code boolExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolExpr(P2Parser.BoolExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code lessEqExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterLessEqExpr(P2Parser.LessEqExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code lessEqExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitLessEqExpr(P2Parser.LessEqExprContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link P2Parser#bexpr}.
 	 * @param ctx the parse tree

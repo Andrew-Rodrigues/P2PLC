@@ -54,27 +54,27 @@ read: READ '(' expr ')' ';';
 write: WRITE '(' expr ')'  ';'; //may need more definitions for write 
 
 expr: 
-'-' expr
-| EXPO expr
-| SQUAREROOT expr
-| NATLOG expr
-| SINE expr
-| COSINE expr
-| expr ('*' | '/' ) expr
-| expr ('+' | '-') expr
-| expr '=' expr
-| expr '<' expr
-| expr '>' expr
-| expr '<=' expr
-| expr '>=' expr
-| bexpr
-| atom
+op='-' expr  #negateExpr
+| op=EXPO expr #expoExpr
+| op=SQUAREROOT expr #sqrtExpr
+| op=NATLOG expr   #natlogExpr
+| op=SINE expr    #sinExpr
+| op=COSINE expr   #cosineExpr
+| expr op=('*' | '/' | '%' ) expr #mulDicModExpr
+| expr op=('+' | '-') expr  #addSubExpr
+| expr op='=' expr  #equalsExpr
+| expr op='<' expr  #lessExpr
+| expr op='>' expr  #greaterExpr
+| expr op='<=' expr #lessEqExpr
+| expr op='>=' expr #greaterEqExpr
+| bexpr #boolExpr
+| atom  #atomExpr
 ;
 
 bexpr: 
-NOT bexpr
-| bexpr AND bexpr
-| bexpr OR bexpr
+op=NOT bexpr 
+| bexpr op=AND bexpr 
+| bexpr op=OR bexpr 
 ;
 
 atom: 
