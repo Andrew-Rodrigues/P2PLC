@@ -219,6 +219,13 @@ public class P2BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements P2V
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitOrExpr(P2Parser.OrExprContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitNegateExpr(P2Parser.NegateExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -227,6 +234,13 @@ public class P2BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements P2V
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitGreaterExpr(P2Parser.GreaterExprContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitNotExpr(P2Parser.NotExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -247,13 +261,6 @@ public class P2BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements P2V
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitBoolExpr(P2Parser.BoolExprContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
 	@Override public T visitLessEqExpr(P2Parser.LessEqExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -261,7 +268,7 @@ public class P2BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements P2V
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitBexpr(P2Parser.BexprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitAndExpr(P2Parser.AndExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -296,14 +303,14 @@ public class P2BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements P2V
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitRealTypeExpr(P2Parser.RealTypeExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitRealExpr(P2Parser.RealExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitBooleanTypeExpr(P2Parser.BooleanTypeExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitBoolExpr(P2Parser.BoolExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

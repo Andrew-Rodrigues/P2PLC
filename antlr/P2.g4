@@ -28,10 +28,10 @@ start: PROGRAM expr ';';
 varDef: (VAR (variableInst?  variableDec?));
 
 variableInst: inst+;
-inst: (expr (',' expr)* ':' expr '=' expr ';');
+inst: (VARNAME (',' VARNAME)* ':' expr '=' expr ';');
 
 variableDec: dec+;
-dec: (expr (',' expr)* ':' expr ';'?);
+dec: (VARNAME (',' VARNAME)* ':' expr ';'?);
 
 instVar: expr ':=' expr ';';
 
@@ -54,6 +54,7 @@ write: WRITE '(' expr ')'  ';'; //may need more definitions for write
 expr: 
 op='-' expr  #negateExpr
 | expr op=EXPO expr #expoExpr
+| NOT expr          #notExpr
 | op=SQUAREROOT expr #sqrtExpr
 | op=NATLOG expr   #natlogExpr
 | op=SINE expr    #sinExpr
@@ -65,14 +66,9 @@ op='-' expr  #negateExpr
 | expr op='>' expr  #greaterExpr
 | expr op='<=' expr #lessEqExpr
 | expr op='>=' expr #greaterEqExpr
-| bexpr #boolExpr
+| expr op=AND expr  #andExpr
+| expr op=OR expr   #orExpr
 | atom  #atomExpr
-;
-
-bexpr: 
-op=NOT bexpr 
-| bexpr op=AND bexpr 
-| bexpr op=OR bexpr 
 ;
 
 atom:   
@@ -80,8 +76,8 @@ atom:
 | NUM               #numExpr
 | DO                #doExpr
 | TO                #toExpr
-| REAL              #realTypeExpr
-| BOOL              #booleanTypeExpr
+| REAL              #realExpr
+| BOOL              #boolExpr
 | (TRUE | FALSE)    #booleanValExpr
 | VARNAME           #variableExpr
 ;
