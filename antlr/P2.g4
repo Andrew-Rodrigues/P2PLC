@@ -55,13 +55,13 @@ write: WRITE '(' expr ')'  ';'; //may need more definitions for write
 
 expr: 
 op='-' expr  #negateExpr
-| op=EXPO expr #expoExpr
+| expr op=EXPO expr #expoExpr
 | op=SQUAREROOT expr #sqrtExpr
 | op=NATLOG expr   #natlogExpr
 | op=SINE expr    #sinExpr
 | op=COSINE expr   #cosineExpr
 | expr op=('*' | '/' | '%' ) expr #mulDicModExpr
-| expr op=('+' | '-') expr  #addSubExpr
+| expr op=(PLUS | MINUS) expr  #addSubExpr
 | expr op='=' expr  #equalsExpr
 | expr op='<' expr  #lessExpr
 | expr op='>' expr  #greaterExpr
@@ -146,6 +146,12 @@ WHILE : W H I L E;
 FOR : F O R;
 DO : D O ;
 TO : T O ;
+PLUS : '+';
+MINUS : '-';
+
+
+
+
 VARNAME: [a-zA-Z_][a-zA-Z0-9_]*;
 NUM: ('0' .. '9')+ (('.'('0' .. '9')+)); 
 COMMENtLine : '(*' .*? '*)' -> skip; 
