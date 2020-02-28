@@ -76,12 +76,6 @@ public interface P2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDec(P2Parser.DecContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link P2Parser#realOrBool}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitRealOrBool(P2Parser.RealOrBoolContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link P2Parser#instVar}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -247,9 +241,59 @@ public interface P2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBexpr(P2Parser.BexprContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link P2Parser#atom}.
+	 * Visit a parse tree produced by the {@code parenExpr}
+	 * labeled alternative in {@link P2Parser#atom}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitAtom(P2Parser.AtomContext ctx);
+	T visitParenExpr(P2Parser.ParenExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code numExpr}
+	 * labeled alternative in {@link P2Parser#atom}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNumExpr(P2Parser.NumExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code doExpr}
+	 * labeled alternative in {@link P2Parser#atom}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDoExpr(P2Parser.DoExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code toExpr}
+	 * labeled alternative in {@link P2Parser#atom}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitToExpr(P2Parser.ToExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code realTypeExpr}
+	 * labeled alternative in {@link P2Parser#atom}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRealTypeExpr(P2Parser.RealTypeExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code booleanTypeExpr}
+	 * labeled alternative in {@link P2Parser#atom}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBooleanTypeExpr(P2Parser.BooleanTypeExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code booleanValExpr}
+	 * labeled alternative in {@link P2Parser#atom}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBooleanValExpr(P2Parser.BooleanValExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code variableExpr}
+	 * labeled alternative in {@link P2Parser#atom}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVariableExpr(P2Parser.VariableExprContext ctx);
 }

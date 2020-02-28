@@ -19,7 +19,7 @@ instVar
 | write
 ;
 
-function: FUNCTION expr '('variableDec')' ':' realOrBool ';' varDef? BEGIN statements (statements)* END ';';
+function: FUNCTION expr '('variableDec')' ':' expr ';' varDef? BEGIN statements (statements)* END ';';
 
 procedure: PROCEDURE expr '(' variableDec* ')' ';' BEGIN statements (statements)* END ';' ;
 
@@ -28,12 +28,10 @@ start: PROGRAM expr ';';
 varDef: (VAR (variableInst?  variableDec?));
 
 variableInst: inst+;
-inst: (expr (',' expr)* ':' realOrBool '=' expr ';');
+inst: (expr (',' expr)* ':' expr '=' expr ';');
 
 variableDec: dec+;
-dec: (expr (',' expr)* ':' realOrBool ';'?);
-
-realOrBool: (REAL | BOOL);
+dec: (expr (',' expr)* ':' expr ';'?);
 
 instVar: expr ':=' expr ';';
 
@@ -77,13 +75,15 @@ op=NOT bexpr
 | bexpr op=OR bexpr 
 ;
 
-atom: 
-'(' expr ')'
-| NUM
-| DO
-| TO
-| (TRUE | FALSE)
-| VARNAME
+atom:   
+'(' expr ')'        #parenExpr
+| NUM               #numExpr
+| DO                #doExpr
+| TO                #toExpr
+| REAL              #realTypeExpr
+| BOOL              #booleanTypeExpr
+| (TRUE | FALSE)    #booleanValExpr
+| VARNAME           #variableExpr
 ;
 
 
