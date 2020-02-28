@@ -275,54 +275,54 @@ public class P2BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements P2V
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitParenExpr(P2Parser.ParenExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitParenAtom(P2Parser.ParenAtomContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitNumExpr(P2Parser.NumExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitNumAtom(P2Parser.NumAtomContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDoExpr(P2Parser.DoExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDoAtom(P2Parser.DoAtomContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitToExpr(P2Parser.ToExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitToAtom(P2Parser.ToAtomContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitRealExpr(P2Parser.RealExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitRealAtom(P2Parser.RealAtomContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitBoolExpr(P2Parser.BoolExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitBoolAtom(P2Parser.BoolAtomContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitBooleanValExpr(P2Parser.BooleanValExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitBooleanValAtom(P2Parser.BooleanValAtomContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitVariableExpr(P2Parser.VariableExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitVarnameAtom(P2Parser.VarnameAtomContext ctx) { return visitChildren(ctx); }
 }

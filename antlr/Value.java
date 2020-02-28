@@ -1,27 +1,32 @@
 public class Value 
 {
-
-    public static Value VOID = new Value(new Object());
-
-    final Object value;
+    //Value Class attributes
+    String type;
+    String name;
+    float realValue;
+    boolean boolValue;
     
-    public Value(Object value) 
-    {
-        this.value = value;
-    }
 
-    public Boolean asBoolean() 
+    public Value(String name) 
     {
-        return (Boolean)value;
+        this.name = name;
     }
-
-    public Float asFloat() 
+    public Value(String name, String type) 
     {
-        return (Float)value;
+        this.name = name;
+        this.type = type;
     }
-
-    public boolean isFloat() 
+    public Value(String name, String type, float realValue) 
     {
-        return value instanceof Float;
+        this.name = name;
+        this.type = type;
+        this.realValue = realValue;
     }
+    public Value(String name, String type, boolean boolValue) 
+    {
+        this.name = name;
+        this.type = type;
+        this.boolValue = boolValue;
+    }
+    
 }

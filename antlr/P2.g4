@@ -33,11 +33,11 @@ inst: (VARNAME (',' VARNAME)* ':' expr '=' expr ';');
 variableDec: dec+;
 dec: (VARNAME (',' VARNAME)* ':' expr ';'?);
 
-instVar: expr ':=' expr ';';
+instVar: VARNAME ':=' expr ';';
 
 forInst: expr ':=' expr expr expr expr;
 
-instBool: expr ':=' expr ';';
+instBool: VARNAME ':=' expr ';';
 
 ifBlock: IF expr THEN BEGIN statements* END;
 
@@ -72,14 +72,14 @@ op='-' expr  #negateExpr
 ;
 
 atom:   
-'(' expr ')'        #parenExpr
-| NUM               #numExpr
-| DO                #doExpr
-| TO                #toExpr
-| REAL              #realExpr
-| BOOL              #boolExpr
-| (TRUE | FALSE)    #booleanValExpr
-| VARNAME           #variableExpr
+'(' expr ')'        #parenAtom
+| NUM               #numAtom
+| DO                #doAtom
+| TO                #toAtom
+| REAL              #realAtom
+| BOOL              #boolAtom
+| (TRUE | FALSE)    #booleanValAtom
+| VARNAME           #varnameAtom
 ;
 
 
