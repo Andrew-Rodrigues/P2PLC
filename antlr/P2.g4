@@ -63,6 +63,10 @@ expr:
 | expr ('*' | '/' ) expr
 | expr ('+' | '-') expr
 | expr '=' expr
+| expr '<' expr
+| expr '>' expr
+| expr '<=' expr
+| expr '>=' expr
 | bexpr
 | atom
 ;
