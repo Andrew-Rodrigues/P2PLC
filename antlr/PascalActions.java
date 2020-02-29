@@ -35,6 +35,7 @@ public class PascalActions extends P2BaseVisitor<Value>
                 value = new Value(id, type, false);
                 memory.put(id, value);
             }
+<<<<<<< HEAD
 
         }
 
@@ -45,6 +46,23 @@ public class PascalActions extends P2BaseVisitor<Value>
    
         return null;
     }
+=======
+
+        }
+
+        //prints the contents of the hashmap
+        for (Map.Entry<String,Value> entry : memory.entrySet())  
+            System.out.println("Key = " + entry.getKey() + 
+                             ", Value = " + entry.getValue().realValue); 
+    
+        return null;
+    }
+
+    
+    // @Override
+    // public Value visitAddSubExpr(P2Parser.AddSubExprContext ctx)
+    // {
+>>>>>>> edf0638abd67ed2c12cf04ae90b4d5124130fb18
 
     @Override
     public Value visitInstVar(P2Parser.InstVarContext ctx) {
@@ -54,11 +72,26 @@ public class PascalActions extends P2BaseVisitor<Value>
         return memory.put(ctx.expr(0).getText(), val);
     }
 
+<<<<<<< HEAD
     @Override
     public Value visitAtomExpr(P2Parser.AtomExprContext ctx) {
+=======
+    //     // String leftName = ctx.expr(0).getText();
+    //     // String rightName = ctx.expr(1).getText();
+
+    //     // System.out.println(ctx.getText());
+    //     // //System.out.println(rightName);
+
+    //     // Value left = new Value(memory.get(leftName));
+    //     // Value right = new Value(memory.get(rightName));
+
+    //     //System.out.println(left);
+    //     //System.out.println(right);
+>>>>>>> edf0638abd67ed2c12cf04ae90b4d5124130fb18
 
         String varName = ctx.getText();
 
+<<<<<<< HEAD
         System.out.println(varName);
 
         Value val = memory.get(varName);
@@ -69,6 +102,23 @@ public class PascalActions extends P2BaseVisitor<Value>
 
         return val;
     }
+=======
+    //     // if(ctx.op.getType() == P2Parser.PLUS)
+    //     // {
+    //     //     return new Value(left.asFloat() + right.asFloat());
+    //     // }
+    //     // else if(ctx.op.getType() == P2Parser.MINUS)
+    //     // {
+    //     //     return new Value(left.asFloat() - right.asFloat());
+    //     // }
+    //     // else
+    //     // {
+    //     //     throw new RuntimeException("unknown operator: " + P2Parser.tokenNames[ctx.op.getType()]);
+    //     // }
+    
+    //     // System.out.println(left.asFloat());
+    //     //System.out.println(dummy);
+>>>>>>> edf0638abd67ed2c12cf04ae90b4d5124130fb18
 
 
 }

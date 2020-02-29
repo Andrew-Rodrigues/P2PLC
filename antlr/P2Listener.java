@@ -423,66 +423,95 @@ public interface P2Listener extends ParseTreeListener {
 	 */
 	void exitAndExpr(P2Parser.AndExprContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code parenExpr}
+	 * Enter a parse tree produced by the {@code parenAtom}
 	 * labeled alternative in {@link P2Parser#atom}.
 	 * @param ctx the parse tree
 	 */
-	void enterParenExpr(P2Parser.ParenExprContext ctx);
+	void enterParenAtom(P2Parser.ParenAtomContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code parenExpr}
+	 * Exit a parse tree produced by the {@code parenAtom}
 	 * labeled alternative in {@link P2Parser#atom}.
 	 * @param ctx the parse tree
 	 */
-	void exitParenExpr(P2Parser.ParenExprContext ctx);
+	void exitParenAtom(P2Parser.ParenAtomContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code numExpr}
+	 * Enter a parse tree produced by the {@code numAtom}
 	 * labeled alternative in {@link P2Parser#atom}.
 	 * @param ctx the parse tree
 	 */
-	void enterNumExpr(P2Parser.NumExprContext ctx);
+	void enterNumAtom(P2Parser.NumAtomContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code numExpr}
+	 * Exit a parse tree produced by the {@code numAtom}
 	 * labeled alternative in {@link P2Parser#atom}.
 	 * @param ctx the parse tree
 	 */
-	void exitNumExpr(P2Parser.NumExprContext ctx);
+	void exitNumAtom(P2Parser.NumAtomContext ctx);
 	/**
+<<<<<<< HEAD
 	 * Enter a parse tree produced by the {@code realExpr}
+=======
+	 * Enter a parse tree produced by the {@code doAtom}
 	 * labeled alternative in {@link P2Parser#atom}.
 	 * @param ctx the parse tree
 	 */
-	void enterRealExpr(P2Parser.RealExprContext ctx);
+	void enterDoAtom(P2Parser.DoAtomContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code realExpr}
+	 * Exit a parse tree produced by the {@code doAtom}
 	 * labeled alternative in {@link P2Parser#atom}.
 	 * @param ctx the parse tree
 	 */
-	void exitRealExpr(P2Parser.RealExprContext ctx);
+	void exitDoAtom(P2Parser.DoAtomContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code boolExpr}
+	 * Enter a parse tree produced by the {@code toAtom}
 	 * labeled alternative in {@link P2Parser#atom}.
 	 * @param ctx the parse tree
 	 */
-	void enterBoolExpr(P2Parser.BoolExprContext ctx);
+	void enterToAtom(P2Parser.ToAtomContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code boolExpr}
+	 * Exit a parse tree produced by the {@code toAtom}
 	 * labeled alternative in {@link P2Parser#atom}.
 	 * @param ctx the parse tree
 	 */
-	void exitBoolExpr(P2Parser.BoolExprContext ctx);
+	void exitToAtom(P2Parser.ToAtomContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code booleanValExpr}
+	 * Enter a parse tree produced by the {@code realAtom}
+>>>>>>> edf0638abd67ed2c12cf04ae90b4d5124130fb18
 	 * labeled alternative in {@link P2Parser#atom}.
 	 * @param ctx the parse tree
 	 */
-	void enterBooleanValExpr(P2Parser.BooleanValExprContext ctx);
+	void enterRealAtom(P2Parser.RealAtomContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code booleanValExpr}
+	 * Exit a parse tree produced by the {@code realAtom}
 	 * labeled alternative in {@link P2Parser#atom}.
 	 * @param ctx the parse tree
 	 */
-	void exitBooleanValExpr(P2Parser.BooleanValExprContext ctx);
+	void exitRealAtom(P2Parser.RealAtomContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code boolAtom}
+	 * labeled alternative in {@link P2Parser#atom}.
+	 * @param ctx the parse tree
+	 */
+	void enterBoolAtom(P2Parser.BoolAtomContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code boolAtom}
+	 * labeled alternative in {@link P2Parser#atom}.
+	 * @param ctx the parse tree
+	 */
+	void exitBoolAtom(P2Parser.BoolAtomContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code booleanValAtom}
+	 * labeled alternative in {@link P2Parser#atom}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanValAtom(P2Parser.BooleanValAtomContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code booleanValAtom}
+	 * labeled alternative in {@link P2Parser#atom}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanValAtom(P2Parser.BooleanValAtomContext ctx);
+	/**
+<<<<<<< HEAD
 	 * Enter a parse tree produced by the {@code varName}
 	 * labeled alternative in {@link P2Parser#atom}.
 	 * @param ctx the parse tree
@@ -494,4 +523,17 @@ public interface P2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVarName(P2Parser.VarNameContext ctx);
+=======
+	 * Enter a parse tree produced by the {@code varnameAtom}
+	 * labeled alternative in {@link P2Parser#atom}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarnameAtom(P2Parser.VarnameAtomContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code varnameAtom}
+	 * labeled alternative in {@link P2Parser#atom}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarnameAtom(P2Parser.VarnameAtomContext ctx);
+>>>>>>> edf0638abd67ed2c12cf04ae90b4d5124130fb18
 }
