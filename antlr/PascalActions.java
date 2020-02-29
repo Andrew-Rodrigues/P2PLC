@@ -2,51 +2,73 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.management.RuntimeErrorException;
+
+import java.util.Iterator;
+
+
 public class PascalActions extends P2BaseVisitor<Value>
 {
 
     private Map<String, Value> memory = new HashMap<String, Value>();
-
-    // @Override
-    // public Value visitVariableDec(P2Parser.VariableDecContext ctx)
-    // {
-    //     String id = ctx.atom().getText();
-
-    //     System.out.println(ctx.VARNAME().getText());
-
-    //     Value value = new Value(0.0f);
-    //     return memory.put(id, value);
-    // }
     
 
+    @Override
+    public Value visitDec(P2Parser.DecContext ctx)
+    {
+        //String id = ctx.VARNAME(0).getText();
+        String type = ctx.expr().getText();
+        Value value;
+        String id;
 
-    // @Override
-    // public Value visitAddSubExpr(P2Parser.AddSubExprContext ctx)
-    // {
+        for(int i = 0; i < ctx.VARNAME().size(); i++ )
+        {
+            id = ctx.VARNAME(i).getText();
 
-    //     // Value left = new Value(visit(ctx.expr(0)));
-    //     // Value right = new Value(visit(ctx.expr(1)));
+            if(type.equals("real"))
+            {
+                value = new Value(id, type, 0.0f);
+                memory.put(id, value);
+            }
+            else if(type.equals("boolean"))
+            {
+                value = new Value(id, type, false);
+                memory.put(id, value);
+            }
 
+        }
 
-    //     Value dummy = new Value(1.0f);
+        //prints the contents of the hashmap
+        for (Map.Entry<String,Value> entry : memory.entrySet())  
+            System.out.println("Key = " + entry.getKey() + 
+                             ", Value = " + entry.getValue().realValue);
+   
+        return null;
+    }
 
-    //     // if(ctx.op.getType() == P2Parser.PLUS)
-    //     // {
-    //     //     return new Value(left.asFloat() + right.asFloat());
-    //     // }
-    //     // else if(ctx.op.getType() == P2Parser.MINUS)
-    //     // {
-    //     //     return new Value(left.asFloat() - right.asFloat());
-    //     // }
-    //     // else
-    //     // {
-    //     //     throw new RuntimeException("unknown operator: " + P2Parser.tokenNames[ctx.op.getType()]);
-    //     // }
-    
-    //     // System.out.println(left.asFloat());
-    //     System.out.println(dummy.asFloat());
+    @Override
+    public Value visitInstVar(P2Parser.InstVarContext ctx) {
+        Value val = new Value(ctx.expr(1));
+        // for(Map.Entry<String, Value> entry: memory.entrySet())
+        //     System.out.println("Key = " +entry.getKey() + ", Value = " + entry.getValue().asFloat());
+        return memory.put(ctx.expr(0).getText(), val);
+    }
 
-    //     return dummy;
-    // }
+    @Override
+    public Value visitAtomExpr(P2Parser.AtomExprContext ctx) {
+
+        String varName = ctx.getText();
+
+        System.out.println(varName);
+
+        Value val = memory.get(varName);
+
+        if(val == null){
+            throw new RuntimeException("no such variable: " + varName);
+        }
+
+        return val;
+    }
+
 
 }

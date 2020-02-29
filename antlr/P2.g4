@@ -23,7 +23,7 @@ function: FUNCTION expr '('variableDec')' ':' expr ';' varDef? BEGIN statements 
 
 procedure: PROCEDURE expr '(' variableDec* ')' ';' BEGIN statements (statements)* END ';' ;
 
-start: PROGRAM expr ';';
+start: PROGRAM VARNAME ';';
 
 varDef: (VAR (variableInst?  variableDec?));
 
@@ -33,23 +33,23 @@ inst: (VARNAME (',' VARNAME)* ':' expr '=' expr ';');
 variableDec: dec+;
 dec: (VARNAME (',' VARNAME)* ':' expr ';'?);
 
-instVar: expr ':=' expr ';';
+instVar: VARNAME ':=' expr;
 
-forInst: expr ':=' expr expr expr expr;
+forInst: VARNAME ':=' expr TO expr DO;
 
-instBool: expr ':=' expr ';';
+instBool: VARNAME ':=' expr ';'; // might not need this
 
 ifBlock: IF expr THEN BEGIN statements* END;
 
 elseBlock: ELSE BEGIN statements* END;
 
-whileBlock: WHILE expr expr BEGIN statements (statements)* END ';' ;
+whileBlock: WHILE expr DO BEGIN statements (statements)* END ';' ;
 
 forBlock: FOR forInst BEGIN statements (statements)* END ';';
 
-read: READ '(' expr ')' ';';
+read: READ  expr  ';';
 
-write: WRITE '(' expr ')'  ';'; //may need more definitions for write 
+write: WRITE  expr   ';'; //may need more definitions for write 
 
 expr: 
 op='-' expr  #negateExpr
@@ -59,6 +59,7 @@ op='-' expr  #negateExpr
 | op=NATLOG expr   #natlogExpr
 | op=SINE expr    #sinExpr
 | op=COSINE expr   #cosineExpr
+| expr op= ':=' expr #assign
 | expr op=('*' | '/' | '%' ) expr #mulDicModExpr
 | expr op=(PLUS | MINUS) expr  #addSubExpr
 | expr op='=' expr  #equalsExpr
@@ -74,12 +75,10 @@ op='-' expr  #negateExpr
 atom:   
 '(' expr ')'        #parenExpr
 | NUM               #numExpr
-| DO                #doExpr
-| TO                #toExpr
 | REAL              #realExpr
 | BOOL              #boolExpr
 | (TRUE | FALSE)    #booleanValExpr
-| VARNAME           #variableExpr
+| VARNAME           #varName
 ;
 
 

@@ -399,6 +399,18 @@ public interface P2Listener extends ParseTreeListener {
 	 */
 	void exitLessEqExpr(P2Parser.LessEqExprContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code assign}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssign(P2Parser.AssignContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code assign}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssign(P2Parser.AssignContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code andExpr}
 	 * labeled alternative in {@link P2Parser#expr}.
 	 * @param ctx the parse tree
@@ -434,30 +446,6 @@ public interface P2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNumExpr(P2Parser.NumExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code doExpr}
-	 * labeled alternative in {@link P2Parser#atom}.
-	 * @param ctx the parse tree
-	 */
-	void enterDoExpr(P2Parser.DoExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code doExpr}
-	 * labeled alternative in {@link P2Parser#atom}.
-	 * @param ctx the parse tree
-	 */
-	void exitDoExpr(P2Parser.DoExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code toExpr}
-	 * labeled alternative in {@link P2Parser#atom}.
-	 * @param ctx the parse tree
-	 */
-	void enterToExpr(P2Parser.ToExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code toExpr}
-	 * labeled alternative in {@link P2Parser#atom}.
-	 * @param ctx the parse tree
-	 */
-	void exitToExpr(P2Parser.ToExprContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code realExpr}
 	 * labeled alternative in {@link P2Parser#atom}.
@@ -495,15 +483,15 @@ public interface P2Listener extends ParseTreeListener {
 	 */
 	void exitBooleanValExpr(P2Parser.BooleanValExprContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code variableExpr}
+	 * Enter a parse tree produced by the {@code varName}
 	 * labeled alternative in {@link P2Parser#atom}.
 	 * @param ctx the parse tree
 	 */
-	void enterVariableExpr(P2Parser.VariableExprContext ctx);
+	void enterVarName(P2Parser.VarNameContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code variableExpr}
+	 * Exit a parse tree produced by the {@code varName}
 	 * labeled alternative in {@link P2Parser#atom}.
 	 * @param ctx the parse tree
 	 */
-	void exitVariableExpr(P2Parser.VariableExprContext ctx);
+	void exitVarName(P2Parser.VarNameContext ctx);
 }

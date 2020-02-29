@@ -242,6 +242,13 @@ public interface P2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLessEqExpr(P2Parser.LessEqExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code assign}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssign(P2Parser.AssignContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code andExpr}
 	 * labeled alternative in {@link P2Parser#expr}.
 	 * @param ctx the parse tree
@@ -262,20 +269,6 @@ public interface P2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitNumExpr(P2Parser.NumExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code doExpr}
-	 * labeled alternative in {@link P2Parser#atom}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDoExpr(P2Parser.DoExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code toExpr}
-	 * labeled alternative in {@link P2Parser#atom}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitToExpr(P2Parser.ToExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code realExpr}
 	 * labeled alternative in {@link P2Parser#atom}.
@@ -298,10 +291,10 @@ public interface P2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBooleanValExpr(P2Parser.BooleanValExprContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code variableExpr}
+	 * Visit a parse tree produced by the {@code varName}
 	 * labeled alternative in {@link P2Parser#atom}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVariableExpr(P2Parser.VariableExprContext ctx);
+	T visitVarName(P2Parser.VarNameContext ctx);
 }
