@@ -5,7 +5,11 @@ public class Value
     String name;
     float realValue;
     boolean boolValue;
-   
+
+    
+   public Float asFloat(){
+       return realValue;
+   }
 
     public Value(String name)
     {

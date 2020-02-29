@@ -256,71 +256,45 @@ public interface P2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAndExpr(P2Parser.AndExprContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code parenAtom}
+	 * Visit a parse tree produced by the {@code parenExpr}
 	 * labeled alternative in {@link P2Parser#atom}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitParenAtom(P2Parser.ParenAtomContext ctx);
+	T visitParenExpr(P2Parser.ParenExprContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code numAtom}
+	 * Visit a parse tree produced by the {@code numExpr}
 	 * labeled alternative in {@link P2Parser#atom}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitNumAtom(P2Parser.NumAtomContext ctx);
+	T visitNumExpr(P2Parser.NumExprContext ctx);
 	/**
-<<<<<<< HEAD
 	 * Visit a parse tree produced by the {@code realExpr}
-=======
-	 * Visit a parse tree produced by the {@code doAtom}
 	 * labeled alternative in {@link P2Parser#atom}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDoAtom(P2Parser.DoAtomContext ctx);
+	T visitRealExpr(P2Parser.RealExprContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code toAtom}
+	 * Visit a parse tree produced by the {@code boolExpr}
 	 * labeled alternative in {@link P2Parser#atom}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitToAtom(P2Parser.ToAtomContext ctx);
+	T visitBoolExpr(P2Parser.BoolExprContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code realAtom}
->>>>>>> edf0638abd67ed2c12cf04ae90b4d5124130fb18
+	 * Visit a parse tree produced by the {@code booleanValExpr}
 	 * labeled alternative in {@link P2Parser#atom}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitRealAtom(P2Parser.RealAtomContext ctx);
+	T visitBooleanValExpr(P2Parser.BooleanValExprContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code boolAtom}
-	 * labeled alternative in {@link P2Parser#atom}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBoolAtom(P2Parser.BoolAtomContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code booleanValAtom}
-	 * labeled alternative in {@link P2Parser#atom}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBooleanValAtom(P2Parser.BooleanValAtomContext ctx);
-	/**
-<<<<<<< HEAD
 	 * Visit a parse tree produced by the {@code varName}
-=======
-	 * Visit a parse tree produced by the {@code varnameAtom}
->>>>>>> edf0638abd67ed2c12cf04ae90b4d5124130fb18
 	 * labeled alternative in {@link P2Parser#atom}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-<<<<<<< HEAD
 	T visitVarName(P2Parser.VarNameContext ctx);
-=======
-	T visitVarnameAtom(P2Parser.VarnameAtomContext ctx);
->>>>>>> edf0638abd67ed2c12cf04ae90b4d5124130fb18
 }
