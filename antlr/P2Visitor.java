@@ -76,11 +76,11 @@ public interface P2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDec(P2Parser.DecContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link P2Parser#instVar}.
+	 * Visit a parse tree produced by {@link P2Parser#assignment}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitInstVar(P2Parser.InstVarContext ctx);
+	T visitAssignment(P2Parser.AssignmentContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link P2Parser#forInst}.
 	 * @param ctx the parse tree
@@ -235,13 +235,6 @@ public interface P2Visitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitLessEqExpr(P2Parser.LessEqExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code assign}
-	 * labeled alternative in {@link P2Parser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAssign(P2Parser.AssignContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code andExpr}
 	 * labeled alternative in {@link P2Parser#expr}.

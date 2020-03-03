@@ -117,15 +117,15 @@ public interface P2Listener extends ParseTreeListener {
 	 */
 	void exitDec(P2Parser.DecContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link P2Parser#instVar}.
+	 * Enter a parse tree produced by {@link P2Parser#assignment}.
 	 * @param ctx the parse tree
 	 */
-	void enterInstVar(P2Parser.InstVarContext ctx);
+	void enterAssignment(P2Parser.AssignmentContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link P2Parser#instVar}.
+	 * Exit a parse tree produced by {@link P2Parser#assignment}.
 	 * @param ctx the parse tree
 	 */
-	void exitInstVar(P2Parser.InstVarContext ctx);
+	void exitAssignment(P2Parser.AssignmentContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link P2Parser#forInst}.
 	 * @param ctx the parse tree
@@ -388,18 +388,6 @@ public interface P2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLessEqExpr(P2Parser.LessEqExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code assign}
-	 * labeled alternative in {@link P2Parser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterAssign(P2Parser.AssignContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code assign}
-	 * labeled alternative in {@link P2Parser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitAssign(P2Parser.AssignContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code andExpr}
 	 * labeled alternative in {@link P2Parser#expr}.

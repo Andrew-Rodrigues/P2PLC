@@ -1,166 +1,90 @@
 import java.util.*;
 import javax.management.RuntimeErrorException;
 
-import java.util.Iterator;
-
-//TODO: ADD WRITELN FUNCTIONALITY
-
 public class PascalActions extends P2BaseVisitor<Wrapper>
 {
 
-    private Map<String, Wrapper> memory = new HashMap<String, Wrapper>();
-    
+    Map<String, Wrapper> memory = new HashMap<String, Wrapper>();
+    Scanner myScanner = new Scanner(System.in);
 
     @Override
-    public Wrapper visitDec(P2Parser.DecContext ctx)
+    public Wrapper visitStartProgram(P2Parser.StartProgramContext ctx)
     {
-
-        String type = ctx.expr().getText();
-        Wrapper value;
-        String id;
-
-        for(int i = 0; i < ctx.VARNAME().size(); i++ )
-        {
-            //System.out.println(ctx.VARNAME(i));
-            id = ctx.VARNAME(i).getText();
-
-            if(type.toLowerCase().equals("real"))
-            {
-                value = new Wrapper(id, type, 0.0f);
-                memory.put(id, value);
-            }
-            else if(type.toLowerCase().equals("boolean"))
-            {
-                value = new Wrapper(id, type, false);
-                memory.put(id, value);
-            }
-
-        }
-
-        //prints the contents of the hashmap
-        // for (Map.Entry<String,Wrapper> entry : memory.entrySet())  
-        //     System.out.println("Key = " + entry.getKey() + 
-        //                      ", Value = " + entry.getValue().floatValue);
-   
-        return null;
+        return super.visitStartProgram(ctx);
     }
 
-    // @Override
-    // public Wrapper visitInstVar(P2Parser.InstVarContext ctx) 
-    // {
-    //     System.out.println(ctx.expr().getText()); //value of the variable
-    //     System.out.println(ctx.VARNAME().getText()); //name of the variable
-
-    //     //TODO: ADD ABILITY TO UPDATE VARIABLES TO VALUES OF OTHER VARIABLES
-    //     //TODO: ADD ABILITY TO HANDLE BOOLS
-
-        
-    //     // Wrapper val = new Wrapper(ctx.VARNAME().getText(), "real",  Float.parseFloat(ctx.expr().getText()));
-    //     // memory.put(val.name, val);
-        
-    
-
-    //     // for(Map.Entry<String, Wrapper> entry: memory.entrySet())
-    //     //     System.out.println("Key = " +entry.getKey() + ", Value = " + entry.getValue().asFloat());
-
-
-    //     return null;
-    // }
+    @Override
+    public Wrapper visitProgramBlocks(P2Parser.ProgramBlocksContext ctx)
+    {
+        return super.visitProgramBlocks(ctx);
+    }
 
     @Override
-    public Wrapper visitAtomExpr(P2Parser.AtomExprContext ctx) 
+    public Wrapper visitStatements(P2Parser.StatementsContext ctx)
     {
+        return super.visitStatements(ctx);
+    }
 
-        String varName = ctx.getText();
-        Wrapper val = memory.get(varName);
+    @Override
+    public Wrapper visitStart(P2Parser.StartContext ctx)
+    {
+        System.out.println("Starting program " + "\"" + ctx.VARNAME() + "\"" + "...");
+        return super.visitStart(ctx);
+    }
 
-        //System.out.println(varName + ": " + val);
+    @Override
+    public Wrapper visitAssignment(P2Parser.AssignmentContext ctx)
+    {
+        String id = ctx.VARNAME().getText();
+        Wrapper mapValue = this.visit(ctx.expr());
+        memory.put(id, mapValue);
+        //System.out.println(id + " was put in table with value: " + mapValue.floatValue);
+        return mapValue;
+    }
 
-        return val;
+    @Override
+    public Wrapper visitVarNameAtom(P2Parser.VarNameAtomContext ctx)
+    {
+        String id = ctx.getText();
+        Wrapper value = memory.get(id);
+        if(value == null) 
+        {
+            throw new RuntimeException("no such variable: " + id);
+        }
+        return value;
     }
 
     @Override
     public Wrapper visitNumAtom(P2Parser.NumAtomContext ctx)
     {
-        Wrapper newFLoat = new Wrapper(Float.valueOf(ctx.getText()));
-        return newFLoat;
-    }
-
-    @Override
-    public Wrapper visitBooleanValAtom(P2Parser.BooleanValAtomContext ctx)
-    {
-        Wrapper newFLoat = new Wrapper(Boolean.valueOf(ctx.getText()));
-        return newFLoat;
-    }
-
-
-    @Override
-    public Wrapper visitVarNameAtom(P2Parser.VarNameAtomContext ctx) {
-        
-        String varName = ctx.getText();
-        Wrapper val = memory.get(varName);
-
-        if(val == null){
-            throw new RuntimeException("no such variable: " + varName);
-        }
-
+        Wrapper val = new Wrapper("real", Float.parseFloat(ctx.getText()));
         return val;
     }
 
+
+
+
+    //NUMBER EXPRESSIONS
+    @Override
+    public Wrapper visitNegateExpr(P2Parser.NegateExprContext ctx)
+    {
+        Wrapper value = this.visit(ctx.e);
+        return new Wrapper(-value.asFloat());
+    }
+
+    
     @Override
     public Wrapper visitAddSubExpr(P2Parser.AddSubExprContext ctx)
     {
-        String info = ctx.getParent().getText();
-        List<Character> chars = new ArrayList<Character> ();
-        List<String> params = new ArrayList<String> ();
-    
-        //crazy algorithm to extract the import information for the operation to follow
-        for(int i = 0; i < info.length(); i++)
-        {
-            if(info.charAt(i) == ':' || info.charAt(i) == '+' || info.charAt(i) == '-' || info.charAt(i) == ';')
-            {
-                StringBuilder sb = new StringBuilder(); //buils a string from the chars to be put into string list
-                for (Character ch : chars) 
-                { 
-                    sb.append(ch); 
-                } 
-                String temp = sb.toString();
-                params.add(temp); //adds the word to the list
-                chars.clear(); //resets the chars list
-            }
-            else if(info.charAt(i) == '=')
-            {
-                continue;
-            }
-            else
-            {
-                chars.add(info.charAt(i));
-            }
-        }
+        Wrapper left = this.visit(ctx.el);
+        Wrapper right = this.visit(ctx.er);
 
-        if(ctx.op.getType() == P2Parser.PLUS) //if we are adding
-        {
-            String result = params.get(0);
-            Wrapper val = memory.get(result);
-            val.floatValue = memory.get(params.get(1)).floatValue + memory.get(params.get(2)).floatValue;
-            memory.put(result, val);
-        }
-        else if(ctx.op.getType() == P2Parser.MINUS) //if we are subtracting
-        {
-            String result = params.get(0);
-            Wrapper val = memory.get(result);
-            val.floatValue = memory.get(params.get(1)).floatValue - memory.get(params.get(2)).floatValue;
-            memory.put(result, val);
-        }
-        else
-        {
-            throw new RuntimeException("unknown operator: " + P2Parser.tokenNames[ctx.op.getType()]);
-        }
-        
-        return null;
+        return new Wrapper("real", left.floatValue + right.floatValue);
     }
-
-
+      
+    
+    
+    //READ-WRITE FUNCTIONS
     @Override
     public Wrapper visitWrite(P2Parser.WriteContext ctx)
     {
@@ -179,6 +103,5 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
         } 
         return null;
     }
-    
 
 }

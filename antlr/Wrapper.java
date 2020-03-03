@@ -7,9 +7,17 @@ public class Wrapper
     boolean boolValue;
 
     
-   public Float asFloat(){
-       return floatValue;
-   }
+    public Float asFloat(){
+        return floatValue;
+    }
+
+    public Wrapper()
+    {
+        this.name = "";
+        this.name = "";
+        this.floatValue = 0.0f;
+        this.boolValue = false;
+    }
 
     public Wrapper(String name)
     {
@@ -27,6 +35,16 @@ public class Wrapper
     {
         this.name = name;
         this.type = type;
+    }
+    public Wrapper(String type, float floatValue)
+    {
+        this.type = type;
+        this.floatValue = floatValue;
+    }
+    public Wrapper(String type, boolean boolValue)
+    {
+        this.type = type;
+        this.boolValue = boolValue;
     }
     public Wrapper(String name, String type, float floatValue)
     {

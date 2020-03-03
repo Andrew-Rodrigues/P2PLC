@@ -6,8 +6,7 @@ programBlocks: start varDef* function* BEGIN statements (statements)*;
 
 
 statements:
-instVar
-//| instBool
+assignment
 | procedure
 | function
 | forInst
@@ -33,11 +32,9 @@ inst: (VARNAME (',' VARNAME)* ':' expr '=' expr ';');
 variableDec: dec+;
 dec: (VARNAME (',' VARNAME)* ':' expr ';'?);
 
-instVar: VARNAME ':=' expr ';';
+assignment: VARNAME ':=' expr ';';
 
 forInst: VARNAME ':=' expr TO expr DO;
-
-//instBool: VARNAME ':=' expr ';'; // might not need this
 
 ifBlock: IF expr THEN BEGIN statements* END;
 
@@ -52,23 +49,22 @@ read: READ  expr  ';';
 write: WRITE  expr   ';'; //may need more definitions for write 
 
 expr: 
-op='-' expr  #negateExpr
-| expr op=EXPO expr #expoExpr
-| NOT expr          #notExpr
-| op=SQUAREROOT expr #sqrtExpr
-| op=NATLOG expr   #natlogExpr
-| op=SINE expr    #sinExpr
-| op=COSINE expr   #cosineExpr
-| expr op= ':=' expr #assign
-| expr op=('*' | '/' | '%' ) expr #mulDicModExpr
-| expr op=(PLUS | MINUS) expr  #addSubExpr
-| expr op='=' expr  #equalsExpr
-| expr op='<' expr  #lessExpr
-| expr op='>' expr  #greaterExpr
-| expr op='<=' expr #lessEqExpr
-| expr op='>=' expr #greaterEqExpr
-| expr op=AND expr  #andExpr
-| expr op=OR expr   #orExpr
+op='-' e=expr  #negateExpr
+| er=expr op=EXPO er=expr #expoExpr
+| NOT e=expr          #notExpr
+| op=SQUAREROOT e=expr #sqrtExpr
+| op=NATLOG e=expr   #natlogExpr
+| op=SINE e=expr    #sinExpr
+| op=COSINE e=expr   #cosineExpr
+| el=expr op=('*' | '/' | '%' ) er=expr #mulDicModExpr
+| el=expr op=(PLUS | MINUS) er=expr  #addSubExpr
+| el=expr op='=' er=expr  #equalsExpr
+| el=expr op='<' er=expr  #lessExpr
+| el=expr op='>' er=expr  #greaterExpr
+| el=expr op='<=' er=expr #lessEqExpr
+| el=expr op='>=' er=expr #greaterEqExpr
+| el=expr op=AND er=expr  #andExpr
+| el=expr op=OR er=expr   #orExpr
 | atom  #atomExpr
 ;
 

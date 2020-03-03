@@ -147,13 +147,13 @@ public class P2BaseListener implements P2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInstVar(P2Parser.InstVarContext ctx) { }
+	@Override public void enterAssignment(P2Parser.AssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInstVar(P2Parser.InstVarContext ctx) { }
+	@Override public void exitAssignment(P2Parser.AssignmentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -430,18 +430,6 @@ public class P2BaseListener implements P2Listener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitLessEqExpr(P2Parser.LessEqExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterAssign(P2Parser.AssignContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitAssign(P2Parser.AssignContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
