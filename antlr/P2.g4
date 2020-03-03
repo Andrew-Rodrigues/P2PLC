@@ -7,7 +7,7 @@ programBlocks: start varDef* function* BEGIN statements (statements)*;
 
 statements:
 instVar
-| instBool
+//| instBool
 | procedure
 | function
 | forInst
@@ -33,11 +33,11 @@ inst: (VARNAME (',' VARNAME)* ':' expr '=' expr ';');
 variableDec: dec+;
 dec: (VARNAME (',' VARNAME)* ':' expr ';'?);
 
-instVar: VARNAME ':=' expr;
+instVar: VARNAME ':=' expr ';';
 
 forInst: VARNAME ':=' expr TO expr DO;
 
-instBool: VARNAME ':=' expr ';'; // might not need this
+//instBool: VARNAME ':=' expr ';'; // might not need this
 
 ifBlock: IF expr THEN BEGIN statements* END;
 
