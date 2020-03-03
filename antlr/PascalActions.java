@@ -144,8 +144,6 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
         {
             throw new RuntimeException("unknown operator: " + P2Parser.tokenNames[ctx.op.getType()]);
         }
-
-        System.out.println(memory.get(params.get(0)).floatValue); //prints the result of the operation
         
         return null;
     }
@@ -159,11 +157,11 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
 
         Wrapper temp = memory.get(print);
 
-        if(temp.type == "real")
+        if(temp.type.equals("real"))
         {
             System.out.println(temp.floatValue);
         }
-        else if(temp.type == "boolean")
+        else if(temp.type.equals("boolean"))
         {
             System.out.println(temp.boolValue);
         } 
