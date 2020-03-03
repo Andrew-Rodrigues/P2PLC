@@ -73,12 +73,12 @@ op='-' expr  #negateExpr
 ;
 
 atom:   
-'(' expr ')'        #parenExpr
-| NUM               #numExpr
-| REAL              #realExpr
-| BOOL              #boolExpr
-| (TRUE | FALSE)    #booleanValExpr
-| VARNAME           #varName
+'(' expr ')'        #parenAtom
+| NUM               #numAtom
+| REAL              #realAtom
+| BOOL              #boolAtom
+| (TRUE | FALSE)    #booleanValAtom
+| VARNAME           #varNameAtom
 ;
 
 

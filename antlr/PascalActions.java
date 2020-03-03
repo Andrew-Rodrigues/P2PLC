@@ -68,32 +68,44 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
     // }
 
     @Override
-    public Wrapper visitAtomExpr(P2Parser.AtomExprContext ctx) {
+    public Wrapper visitAtomExpr(P2Parser.AtomExprContext ctx) 
+    {
 
         String varName = ctx.getText();
         Wrapper val = memory.get(varName);
 
         //System.out.println(varName + ": " + val);
 
-
-
         return val;
     }
 
-    // @Override
-    // public Wrapper visitVarName(P2Parser.VarNameContext ctx) {
+    @Override
+    public Wrapper visitNumAtom(P2Parser.NumAtomContext ctx)
+    {
+        Wrapper newFLoat = new Wrapper(Float.valueOf(ctx.getText()));
+        return newFLoat;
+    }
+
+    @Override
+    public Wrapper visitBooleanValAtom(P2Parser.BooleanValAtomContext ctx)
+    {
+        Wrapper newFLoat = new Wrapper(Boolean.valueOf(ctx.getText()));
+        return newFLoat;
+    }
+
+
+    @Override
+    public Wrapper visitVarNameAtom(P2Parser.VarNameAtomContext ctx) {
         
-    //     String varName = ctx.getText();
-    //     Wrapper val = memory.get(varName);
+        String varName = ctx.getText();
+        Wrapper val = memory.get(varName);
 
-    //     //System.out.println(varName+ ": " + val.floatValue);
+        if(val == null){
+            throw new RuntimeException("no such variable: " + varName);
+        }
 
-    //     if(val == null){
-    //         throw new RuntimeException("no such variable: " + varName);
-    //     }
-
-    //     return val;
-    // }
+        return val;
+    }
 
     @Override
     public Wrapper visitAddSubExpr(P2Parser.AddSubExprContext ctx)

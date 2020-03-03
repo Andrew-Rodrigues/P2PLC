@@ -15,6 +15,14 @@ public class Wrapper
     {
         this.name = name;
     }
+    public Wrapper(float floatValue)
+    {
+        this.floatValue = floatValue;
+    }
+    public Wrapper(boolean boolValue)
+    {
+        this.boolValue = boolValue;
+    }
     public Wrapper(String name, String type)
     {
         this.name = name;

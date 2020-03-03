@@ -2263,108 +2263,108 @@ public class P2Parser extends Parser {
 			super.copyFrom(ctx);
 		}
 	}
-	public static class VarNameContext extends AtomContext {
-		public TerminalNode VARNAME() { return getToken(P2Parser.VARNAME, 0); }
-		public VarNameContext(AtomContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof P2Listener ) ((P2Listener)listener).enterVarName(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof P2Listener ) ((P2Listener)listener).exitVarName(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof P2Visitor ) return ((P2Visitor<? extends T>)visitor).visitVarName(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class RealExprContext extends AtomContext {
-		public TerminalNode REAL() { return getToken(P2Parser.REAL, 0); }
-		public RealExprContext(AtomContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof P2Listener ) ((P2Listener)listener).enterRealExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof P2Listener ) ((P2Listener)listener).exitRealExpr(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof P2Visitor ) return ((P2Visitor<? extends T>)visitor).visitRealExpr(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class BoolExprContext extends AtomContext {
-		public TerminalNode BOOL() { return getToken(P2Parser.BOOL, 0); }
-		public BoolExprContext(AtomContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof P2Listener ) ((P2Listener)listener).enterBoolExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof P2Listener ) ((P2Listener)listener).exitBoolExpr(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof P2Visitor ) return ((P2Visitor<? extends T>)visitor).visitBoolExpr(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class BooleanValExprContext extends AtomContext {
-		public TerminalNode TRUE() { return getToken(P2Parser.TRUE, 0); }
-		public TerminalNode FALSE() { return getToken(P2Parser.FALSE, 0); }
-		public BooleanValExprContext(AtomContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof P2Listener ) ((P2Listener)listener).enterBooleanValExpr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof P2Listener ) ((P2Listener)listener).exitBooleanValExpr(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof P2Visitor ) return ((P2Visitor<? extends T>)visitor).visitBooleanValExpr(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class ParenExprContext extends AtomContext {
+	public static class ParenAtomContext extends AtomContext {
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
-		public ParenExprContext(AtomContext ctx) { copyFrom(ctx); }
+		public ParenAtomContext(AtomContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof P2Listener ) ((P2Listener)listener).enterParenExpr(this);
+			if ( listener instanceof P2Listener ) ((P2Listener)listener).enterParenAtom(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof P2Listener ) ((P2Listener)listener).exitParenExpr(this);
+			if ( listener instanceof P2Listener ) ((P2Listener)listener).exitParenAtom(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof P2Visitor ) return ((P2Visitor<? extends T>)visitor).visitParenExpr(this);
+			if ( visitor instanceof P2Visitor ) return ((P2Visitor<? extends T>)visitor).visitParenAtom(this);
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class NumExprContext extends AtomContext {
+	public static class NumAtomContext extends AtomContext {
 		public TerminalNode NUM() { return getToken(P2Parser.NUM, 0); }
-		public NumExprContext(AtomContext ctx) { copyFrom(ctx); }
+		public NumAtomContext(AtomContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof P2Listener ) ((P2Listener)listener).enterNumExpr(this);
+			if ( listener instanceof P2Listener ) ((P2Listener)listener).enterNumAtom(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof P2Listener ) ((P2Listener)listener).exitNumExpr(this);
+			if ( listener instanceof P2Listener ) ((P2Listener)listener).exitNumAtom(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof P2Visitor ) return ((P2Visitor<? extends T>)visitor).visitNumExpr(this);
+			if ( visitor instanceof P2Visitor ) return ((P2Visitor<? extends T>)visitor).visitNumAtom(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class BoolAtomContext extends AtomContext {
+		public TerminalNode BOOL() { return getToken(P2Parser.BOOL, 0); }
+		public BoolAtomContext(AtomContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof P2Listener ) ((P2Listener)listener).enterBoolAtom(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof P2Listener ) ((P2Listener)listener).exitBoolAtom(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof P2Visitor ) return ((P2Visitor<? extends T>)visitor).visitBoolAtom(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class BooleanValAtomContext extends AtomContext {
+		public TerminalNode TRUE() { return getToken(P2Parser.TRUE, 0); }
+		public TerminalNode FALSE() { return getToken(P2Parser.FALSE, 0); }
+		public BooleanValAtomContext(AtomContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof P2Listener ) ((P2Listener)listener).enterBooleanValAtom(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof P2Listener ) ((P2Listener)listener).exitBooleanValAtom(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof P2Visitor ) return ((P2Visitor<? extends T>)visitor).visitBooleanValAtom(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class RealAtomContext extends AtomContext {
+		public TerminalNode REAL() { return getToken(P2Parser.REAL, 0); }
+		public RealAtomContext(AtomContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof P2Listener ) ((P2Listener)listener).enterRealAtom(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof P2Listener ) ((P2Listener)listener).exitRealAtom(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof P2Visitor ) return ((P2Visitor<? extends T>)visitor).visitRealAtom(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class VarNameAtomContext extends AtomContext {
+		public TerminalNode VARNAME() { return getToken(P2Parser.VARNAME, 0); }
+		public VarNameAtomContext(AtomContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof P2Listener ) ((P2Listener)listener).enterVarNameAtom(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof P2Listener ) ((P2Listener)listener).exitVarNameAtom(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof P2Visitor ) return ((P2Visitor<? extends T>)visitor).visitVarNameAtom(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -2378,7 +2378,7 @@ public class P2Parser extends Parser {
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__1:
-				_localctx = new ParenExprContext(_localctx);
+				_localctx = new ParenAtomContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(295);
@@ -2390,7 +2390,7 @@ public class P2Parser extends Parser {
 				}
 				break;
 			case NUM:
-				_localctx = new NumExprContext(_localctx);
+				_localctx = new NumAtomContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(299);
@@ -2398,7 +2398,7 @@ public class P2Parser extends Parser {
 				}
 				break;
 			case REAL:
-				_localctx = new RealExprContext(_localctx);
+				_localctx = new RealAtomContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(300);
@@ -2406,7 +2406,7 @@ public class P2Parser extends Parser {
 				}
 				break;
 			case BOOL:
-				_localctx = new BoolExprContext(_localctx);
+				_localctx = new BoolAtomContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
 				setState(301);
@@ -2415,7 +2415,7 @@ public class P2Parser extends Parser {
 				break;
 			case TRUE:
 			case FALSE:
-				_localctx = new BooleanValExprContext(_localctx);
+				_localctx = new BooleanValAtomContext(_localctx);
 				enterOuterAlt(_localctx, 5);
 				{
 				setState(302);
@@ -2431,7 +2431,7 @@ public class P2Parser extends Parser {
 				}
 				break;
 			case VARNAME:
-				_localctx = new VarNameContext(_localctx);
+				_localctx = new VarNameAtomContext(_localctx);
 				enterOuterAlt(_localctx, 6);
 				{
 				setState(303);
