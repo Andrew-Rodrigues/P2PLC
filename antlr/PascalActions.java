@@ -3,23 +3,21 @@ import java.util.*;
 
 import javax.management.RuntimeErrorException;
 
-
-
 import java.util.Iterator;
 
 
-public class PascalActions extends P2BaseVisitor<Value>
+public class PascalActions extends P2BaseVisitor<Wrapper>
 {
 
-    private Map<String, Value> memory = new HashMap<String, Value>();
+    private Map<String, Wrapper> memory = new HashMap<String, Wrapper>();
     
 
     @Override
-    public Value visitDec(P2Parser.DecContext ctx)
+    public Wrapper visitDec(P2Parser.DecContext ctx)
     {
 
         String type = ctx.expr().getText();
-        Value value;
+        Wrapper value;
         String id;
 
         for(int i = 0; i < ctx.VARNAME().size(); i++ )
@@ -29,19 +27,19 @@ public class PascalActions extends P2BaseVisitor<Value>
 
             if(type.toLowerCase().equals("real"))
             {
-                value = new Value(id, type, 0.0f);
+                value = new Wrapper(id, type, 0.0f);
                 memory.put(id, value);
             }
             else if(type.toLowerCase().equals("boolean"))
             {
-                value = new Value(id, type, false);
+                value = new Wrapper(id, type, false);
                 memory.put(id, value);
             }
 
         }
 
         //prints the contents of the hashmap
-        // for (Map.Entry<String,Value> entry : memory.entrySet())  
+        // for (Map.Entry<String,Wrapper> entry : memory.entrySet())  
         //     System.out.println("Key = " + entry.getKey() + 
         //                      ", Value = " + entry.getValue().realValue);
    
@@ -58,10 +56,10 @@ public class PascalActions extends P2BaseVisitor<Value>
     // }
 
     @Override
-    public Value visitAtomExpr(P2Parser.AtomExprContext ctx) {
+    public Wrapper visitAtomExpr(P2Parser.AtomExprContext ctx) {
 
         String varName = ctx.getText();
-        Value val = memory.get(varName);
+        Wrapper val = memory.get(varName);
 
         //System.out.println(varName + " yut: " + val);
 
@@ -69,10 +67,10 @@ public class PascalActions extends P2BaseVisitor<Value>
     }
 
     @Override
-    public Value visitVarName(P2Parser.VarNameContext ctx) {
+    public Wrapper visitVarName(P2Parser.VarNameContext ctx) {
         
         String varName = ctx.getText();
-        Value val = memory.get(varName);
+        Wrapper val = memory.get(varName);
 
         //System.out.println(varName+ ": " + val.floatValue);
 
@@ -84,7 +82,7 @@ public class PascalActions extends P2BaseVisitor<Value>
     }
 
     @Override
-    public Value visitAddSubExpr(P2Parser.AddSubExprContext ctx)
+    public Wrapper visitAddSubExpr(P2Parser.AddSubExprContext ctx)
     {
         String info = ctx.getParent().getText();
         List<Character> chars = new ArrayList<Character> ();
@@ -115,6 +113,14 @@ public class PascalActions extends P2BaseVisitor<Value>
         }
 
         System.out.println(params);
+        String result = params.get(0);
+        Wrapper val = memory.get(result);
+        val.floatValue = 5.0f + 2.0f;
+
+        memory.put(result, val);
+
+        System.out.println(memory.get("result").floatValue);
+        
 
         return null;
     }

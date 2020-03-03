@@ -1,6 +1,6 @@
-public class Value 
+public class Wrapper 
 {
-    //Value Class attributes
+    //Wrapper Class attributes
     String type;
     String name;
     float floatValue;
@@ -11,22 +11,22 @@ public class Value
        return floatValue;
    }
 
-    public Value(String name)
+    public Wrapper(String name)
     {
         this.name = name;
     }
-    public Value(String name, String type)
+    public Wrapper(String name, String type)
     {
         this.name = name;
         this.type = type;
     }
-    public Value(String name, String type, float floatValue)
+    public Wrapper(String name, String type, float floatValue)
     {
         this.name = name;
         this.type = type;
         this.floatValue = floatValue;
     }
-    public Value(String name, String type, boolean boolValue)
+    public Wrapper(String name, String type, boolean boolValue)
     {
         this.name = name;
         this.type = type;
