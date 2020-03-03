@@ -1,10 +1,9 @@
 import java.util.*;
-
-
 import javax.management.RuntimeErrorException;
 
 import java.util.Iterator;
 
+//TODO: ADD WRITELN FUNCTIONALITY
 
 public class PascalActions extends P2BaseVisitor<Wrapper>
 {
@@ -41,18 +40,31 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
         //prints the contents of the hashmap
         // for (Map.Entry<String,Wrapper> entry : memory.entrySet())  
         //     System.out.println("Key = " + entry.getKey() + 
-        //                      ", Value = " + entry.getValue().realValue);
+        //                      ", Value = " + entry.getValue().floatValue);
    
         return null;
     }
 
     // @Override
-    // public Value visitInstVar(P2Parser.InstVarContext ctx) {
-    //     //System.out.println(ctx.expr());
-    //     Value val = new Value(ctx.VARNAME().getText(), "real",  Float.parseFloat(ctx.expr().getText()));
-    //     // for(Map.Entry<String, Value> entry: memory.entrySet())
+    // public Wrapper visitInstVar(P2Parser.InstVarContext ctx) 
+    // {
+    //     System.out.println(ctx.expr().getText()); //value of the variable
+    //     System.out.println(ctx.VARNAME().getText()); //name of the variable
+
+    //     //TODO: ADD ABILITY TO UPDATE VARIABLES TO VALUES OF OTHER VARIABLES
+    //     //TODO: ADD ABILITY TO HANDLE BOOLS
+
+        
+    //     // Wrapper val = new Wrapper(ctx.VARNAME().getText(), "real",  Float.parseFloat(ctx.expr().getText()));
+    //     // memory.put(val.name, val);
+        
+    
+
+    //     // for(Map.Entry<String, Wrapper> entry: memory.entrySet())
     //     //     System.out.println("Key = " +entry.getKey() + ", Value = " + entry.getValue().asFloat());
-    //     return memory.put(ctx.VARNAME().getText(), val);
+
+
+    //     return null;
     // }
 
     @Override
@@ -61,25 +73,27 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
         String varName = ctx.getText();
         Wrapper val = memory.get(varName);
 
-        //System.out.println(varName + " yut: " + val);
+        //System.out.println(varName + ": " + val);
+
+
 
         return val;
     }
 
-    @Override
-    public Wrapper visitVarName(P2Parser.VarNameContext ctx) {
+    // @Override
+    // public Wrapper visitVarName(P2Parser.VarNameContext ctx) {
         
-        String varName = ctx.getText();
-        Wrapper val = memory.get(varName);
+    //     String varName = ctx.getText();
+    //     Wrapper val = memory.get(varName);
 
-        //System.out.println(varName+ ": " + val.floatValue);
+    //     //System.out.println(varName+ ": " + val.floatValue);
 
-        if(val == null){
-            throw new RuntimeException("no such variable: " + varName);
-        }
+    //     if(val == null){
+    //         throw new RuntimeException("no such variable: " + varName);
+    //     }
 
-        return val;
-    }
+    //     return val;
+    // }
 
     @Override
     public Wrapper visitAddSubExpr(P2Parser.AddSubExprContext ctx)
@@ -93,14 +107,14 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
         {
             if(info.charAt(i) == ':' || info.charAt(i) == '+' || info.charAt(i) == '-' || info.charAt(i) == ';')
             {
-                StringBuilder sb = new StringBuilder();
+                StringBuilder sb = new StringBuilder(); //buils a string from the chars to be put into string list
                 for (Character ch : chars) 
                 { 
                     sb.append(ch); 
                 } 
                 String temp = sb.toString();
-                params.add(temp);
-                chars.clear();
+                params.add(temp); //adds the word to the list
+                chars.clear(); //resets the chars list
             }
             else if(info.charAt(i) == '=')
             {
@@ -112,17 +126,49 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
             }
         }
 
-        System.out.println(params);
-        String result = params.get(0);
-        Wrapper val = memory.get(result);
-        val.floatValue = 5.0f + 2.0f;
+        if(ctx.op.getType() == P2Parser.PLUS) //if we are adding
+        {
+            String result = params.get(0);
+            Wrapper val = memory.get(result);
+            val.floatValue = memory.get(params.get(1)).floatValue + memory.get(params.get(2)).floatValue;
+            memory.put(result, val);
+        }
+        else if(ctx.op.getType() == P2Parser.MINUS) //if we are subtracting
+        {
+            String result = params.get(0);
+            Wrapper val = memory.get(result);
+            val.floatValue = memory.get(params.get(1)).floatValue - memory.get(params.get(2)).floatValue;
+            memory.put(result, val);
+        }
+        else
+        {
+            throw new RuntimeException("unknown operator: " + P2Parser.tokenNames[ctx.op.getType()]);
+        }
 
-        memory.put(result, val);
-
-        System.out.println(memory.get("result").floatValue);
+        System.out.println(memory.get(params.get(0)).floatValue); //prints the result of the operation
         
-
         return null;
     }
+
+
+    @Override
+    public Wrapper visitWrite(P2Parser.WriteContext ctx)
+    {
+        String print = ctx.expr().getText();
+        print = print.replaceAll("[()]","");
+
+        Wrapper temp = memory.get(print);
+
+        if(temp.type == "real")
+        {
+            System.out.println(temp.floatValue);
+        }
+        else if(temp.type == "boolean")
+        {
+            System.out.println(temp.boolValue);
+        } 
+        return null;
+    }
+    
 
 }
