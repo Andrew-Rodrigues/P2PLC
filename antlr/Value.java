@@ -3,12 +3,12 @@ public class Value
     //Value Class attributes
     String type;
     String name;
-    float realValue;
+    float floatValue;
     boolean boolValue;
 
     
    public Float asFloat(){
-       return realValue;
+       return floatValue;
    }
 
     public Value(String name)
@@ -20,11 +20,11 @@ public class Value
         this.name = name;
         this.type = type;
     }
-    public Value(String name, String type, float realValue)
+    public Value(String name, String type, float floatValue)
     {
         this.name = name;
         this.type = type;
-        this.realValue = realValue;
+        this.floatValue = floatValue;
     }
     public Value(String name, String type, boolean boolValue)
     {

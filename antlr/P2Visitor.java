@@ -88,12 +88,6 @@ public interface P2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitForInst(P2Parser.ForInstContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link P2Parser#instBool}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitInstBool(P2Parser.InstBoolContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link P2Parser#ifBlock}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

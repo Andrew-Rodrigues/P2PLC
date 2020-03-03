@@ -137,16 +137,6 @@ public interface P2Listener extends ParseTreeListener {
 	 */
 	void exitForInst(P2Parser.ForInstContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link P2Parser#instBool}.
-	 * @param ctx the parse tree
-	 */
-	void enterInstBool(P2Parser.InstBoolContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link P2Parser#instBool}.
-	 * @param ctx the parse tree
-	 */
-	void exitInstBool(P2Parser.InstBoolContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link P2Parser#ifBlock}.
 	 * @param ctx the parse tree
 	 */

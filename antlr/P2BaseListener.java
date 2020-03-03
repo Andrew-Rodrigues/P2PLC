@@ -171,18 +171,6 @@ public class P2BaseListener implements P2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInstBool(P2Parser.InstBoolContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitInstBool(P2Parser.InstBoolContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterIfBlock(P2Parser.IfBlockContext ctx) { }
 	/**
 	 * {@inheritDoc}
