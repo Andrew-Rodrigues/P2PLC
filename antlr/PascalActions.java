@@ -246,9 +246,6 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
 
     
 
-
-
-
     ////================= READ-WRITE FUNCTIONS ======================//
     @Override
     public Wrapper visitWrite(P2Parser.WriteContext ctx)
@@ -266,6 +263,36 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
         {
             System.out.println(temp.boolValue);
         } 
+        return null;
+    }
+
+    @Override
+    public Wrapper visitRead(P2Parser.ReadContext ctx) {
+        // TODO Auto-generated method stub
+        String var = ctx.expr().getText();
+
+        var = var.replaceAll("[()]", "");
+
+        
+        Wrapper temp = memory.get(var);
+
+
+        if(temp.type.equals("real")){
+           float newFloat = myScanner.nextFloat();
+           temp.floatValue = newFloat;
+           
+
+        }
+        if(temp.type.equals("boolean"))
+        {
+            boolean newBool = myScanner.nextBoolean();
+            temp.boolValue = newBool;
+
+
+        } 
+
+        memory.put(var, temp);
+
         return null;
     }
 
