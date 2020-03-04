@@ -217,6 +217,26 @@ public interface P2Listener extends ParseTreeListener {
 	 */
 	void exitWrite(P2Parser.WriteContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link P2Parser#breakStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterBreakStatement(P2Parser.BreakStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link P2Parser#breakStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitBreakStatement(P2Parser.BreakStatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link P2Parser#continueStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterContinueStatement(P2Parser.ContinueStatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link P2Parser#continueStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitContinueStatement(P2Parser.ContinueStatementContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code equalsExpr}
 	 * labeled alternative in {@link P2Parser#expr}.
 	 * @param ctx the parse tree

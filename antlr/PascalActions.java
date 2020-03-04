@@ -8,6 +8,8 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
     Scanner myScanner = new Scanner(System.in);
     boolean ifBool = false;
     boolean elseBool = false;
+    boolean continueVal = false;
+    boolean breakVal = false;
 
     @Override
     public Wrapper visitStartProgram(P2Parser.StartProgramContext ctx)
@@ -387,7 +389,6 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
     @Override
     public Wrapper visitRead(P2Parser.ReadContext ctx) 
     {
-        // TODO Auto-generated method stub
         String var = ctx.expr().getText();
         var = var.replaceAll("[()]", "");
 
@@ -420,6 +421,20 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
     }
 
     @Override
+    public Wrapper visitBreakStatement(P2Parser.BreakStatementContext ctx)
+    {
+        breakVal = true;
+        return super.visitBreakStatement(ctx);
+    }
+
+    @Override
+    public Wrapper visitContinueStatement(P2Parser.ContinueStatementContext ctx)
+    {
+        continueVal = true;
+        return super.visitContinueStatement(ctx);
+    }
+
+    @Override
     public Wrapper visitWhileBlock(P2Parser.WhileBlockContext ctx)
     {
         Wrapper value = this.visit(ctx.expr());
@@ -427,11 +442,24 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
         while(value.boolValue) 
         {
 
-            // evaluate the code block
-            this.visit(ctx.loopBlock());
+            if(continueVal)
+            {
+                continueVal = false;
+                continue;
+            }
 
-            // evaluate the expression
-            value = this.visit(ctx.expr());
+            else if(breakVal)
+            {
+                breakVal = false;
+                break;
+            }
+
+            else
+            {
+                this.visit(ctx.loopBlock()); //evaluate the code block
+            }
+            
+            value = this.visit(ctx.expr()); //re-evaluate the expression
         }
 
         return null;
@@ -446,9 +474,24 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
 
         for(float i = memory.get(id).floatValue; i < memory.get("finish").floatValue; i++)
         {
-            //System.out.println(i);
-            this.visit(ctx.loopBlock());
-            memory.get(id).floatValue++;
+            if(continueVal)
+            {
+                continueVal = false;
+                memory.get(id).floatValue++;
+                continue;
+            }
+
+            else if(breakVal)
+            {
+                breakVal = false;
+                break;
+            }
+
+            else
+            {
+                this.visit(ctx.loopBlock()); //evaluate the code block
+                memory.get(id).floatValue++;
+            }
         }
 
         return null;
@@ -508,5 +551,15 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
     }
     
 
+    //================= FUNCTIONS AND PROCEDURES ====================//
+    @Override
+    public Wrapper visitFunction(P2Parser.FunctionContext ctx)
+    {
+        //System.out.println("visited function");
+
+
+        return null;
+    }
+    
 
 }

@@ -16,6 +16,8 @@ assignment
 | forBlock
 | read
 | write
+| breakStatement
+| continueStatement
 ;
 
 function: FUNCTION expr '('variableDec')' ':' expr ';' varDef? BEGIN statements (statements)* END ';';
@@ -51,6 +53,10 @@ forBlock: FOR forInst BEGIN loopBlock END ';';
 read: READ expr ';';
 
 write: WRITE expr ';'; //may need more definitions for write 
+
+breakStatement: BREAK ';' ;
+
+continueStatement: CONTINUE ';' ;
 
 expr: 
 op='-' e=expr  #negateExpr
@@ -146,6 +152,8 @@ MINUS : '-';
 MULT : '*';
 DIVI: '/';
 MOD: M O D;
+BREAK : B R E A K;
+CONTINUE : C O N T I N U E;
 
 
 

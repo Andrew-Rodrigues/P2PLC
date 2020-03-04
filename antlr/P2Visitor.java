@@ -136,6 +136,18 @@ public interface P2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitWrite(P2Parser.WriteContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link P2Parser#breakStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBreakStatement(P2Parser.BreakStatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link P2Parser#continueStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitContinueStatement(P2Parser.ContinueStatementContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code equalsExpr}
 	 * labeled alternative in {@link P2Parser#expr}.
 	 * @param ctx the parse tree
