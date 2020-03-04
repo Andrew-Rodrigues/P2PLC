@@ -472,7 +472,7 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
 
         String id = ctx.forInst().VARNAME().getText();
 
-        for(float i = memory.get(id).floatValue; i < memory.get("finish").floatValue; i++)
+        for(float i = memory.get(id).floatValue; i <= memory.get("finish").floatValue; i++)
         {
             if(continueVal)
             {
