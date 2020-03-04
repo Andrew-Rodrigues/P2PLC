@@ -50,6 +50,48 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
     public Wrapper visitInst(P2Parser.InstContext ctx)
     {
         //System.out.println("At Inst");
+        String group = ctx.getText();
+        String type = ctx.expr(0).getText();
+        String value = ctx.expr(1).getText();
+
+        List<Character> chars = new ArrayList<Character> ();
+        List<String> variables = new ArrayList<String> ();
+
+        for(int i = 0; i < group.length(); i++)
+        {
+            if(group.charAt(i) == ',' || group.charAt(i) == ':')
+            {
+                StringBuilder sb = new StringBuilder(); //builds a string from the chars to be put into string list
+                for (Character ch : chars) 
+                { 
+                    sb.append(ch); 
+                } 
+                String temp = sb.toString();
+                variables.add(temp); //adds the word to the list
+                chars.clear(); //resets the chars list
+            }
+            else
+            {
+                chars.add(group.charAt(i));
+            }
+        }
+
+        for (String temp : variables) 
+        {
+            if(type.equals("real"))
+            {   
+                Wrapper mapValue = new Wrapper("real", Float.parseFloat(value));
+                memory.put(temp, mapValue);
+            }
+            else if(type.equals("boolean"))
+            {
+                Wrapper mapValue = new Wrapper("boolean", Boolean.parseBoolean(value));
+                memory.put(temp, mapValue);
+            }
+            
+        }
+        
+
         return super.visitInst(ctx);
     }
 
@@ -319,8 +361,6 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
     }
 
 
-    
-
     ////================= READ-WRITE FUNCTIONS ======================//
     @Override
     public Wrapper visitWrite(P2Parser.WriteContext ctx)
@@ -337,36 +377,35 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
         else if(temp.type.equals("boolean"))
         {
             System.out.println(temp.boolValue);
-        } 
+        }
+
         return null;
     }
-
+    
     // @Override
-    // public Wrapper visitRead(P2Parser.ReadContext ctx) {
+    // public Wrapper visitRead(P2Parser.ReadContext ctx) 
+    // {
     //     // TODO Auto-generated method stub
     //     String var = ctx.expr().getText();
-
     //     var = var.replaceAll("[()]", "");
 
-        
-    //     Wrapper temp = memory.get(var);
+    //     System.out.println(var);
 
+    //     // Wrapper temp = memory.get(var);
 
-    //     if(temp.type.equals("real")){
-    //        float newFloat = myScanner.nextFloat();
-    //        temp.floatValue = newFloat;
-           
+    //     // if(temp.type.equals("real"))
+    //     // {
+    //     //    float newFloat = myScanner.nextFloat();
+    //     //    temp.floatValue = newFloat;
 
-    //     }
-    //     if(temp.type.equals("boolean"))
-    //     {
-    //         boolean newBool = myScanner.nextBoolean();
-    //         temp.boolValue = newBool;
+    //     // }
+    //     // if(temp.type.equals("boolean"))
+    //     // {
+    //     //     boolean newBool = myScanner.nextBoolean();
+    //     //     temp.boolValue = newBool;
+    //     // } 
 
-
-    //     } 
-
-    //     memory.put(var, temp);
+    //     // memory.put(var, temp);
 
     //     return null;
     // }
