@@ -157,6 +157,16 @@ public interface P2Listener extends ParseTreeListener {
 	 */
 	void exitElseBlock(P2Parser.ElseBlockContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link P2Parser#loopBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterLoopBlock(P2Parser.LoopBlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link P2Parser#loopBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitLoopBlock(P2Parser.LoopBlockContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link P2Parser#whileBlock}.
 	 * @param ctx the parse tree
 	 */

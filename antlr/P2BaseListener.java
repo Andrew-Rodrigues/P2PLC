@@ -195,6 +195,18 @@ public class P2BaseListener implements P2Listener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterLoopBlock(P2Parser.LoopBlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitLoopBlock(P2Parser.LoopBlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterWhileBlock(P2Parser.WhileBlockContext ctx) { }
 	/**
 	 * {@inheritDoc}

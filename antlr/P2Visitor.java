@@ -100,6 +100,12 @@ public interface P2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitElseBlock(P2Parser.ElseBlockContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link P2Parser#loopBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLoopBlock(P2Parser.LoopBlockContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link P2Parser#whileBlock}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

@@ -409,4 +409,56 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
         return null;
     }
 
+
+    //================= LOOPS ====================//
+    @Override
+    public Wrapper visitLoopBlock(P2Parser.LoopBlockContext ctx)
+    {
+        return super.visitLoopBlock(ctx);
+    }
+
+    @Override
+    public Wrapper visitWhileBlock(P2Parser.WhileBlockContext ctx)
+    {
+        Wrapper value = this.visit(ctx.expr());
+
+        while(value.boolValue) 
+        {
+
+            // evaluate the code block
+            this.visit(ctx.loopBlock());
+
+            // evaluate the expression
+            value = this.visit(ctx.expr());
+        }
+
+        return null;
+    }
+
+    @Override
+    public Wrapper visitForBlock(P2Parser.ForBlockContext ctx)
+    {
+        //Wrapper value = this.visit(ctx.expr());
+
+        return null;
+    }
+
+    @Override
+    public Wrapper visitForInst(P2Parser.ForInstContext ctx)
+    {
+        String id = ctx.VARNAME().getText();
+        System.out.println(id);
+
+        // Wrapper mapValue = this.visit(ctx.expr());
+        // memory.put(id, mapValue);
+        // //System.out.println(id + " was put in table with value: " + mapValue.floatValue);
+        // //System.out.println(id + " was put in table with value: " + mapValue.boolValue);
+        // return mapValue;
+
+        return null;
+    }
+
+    
+
+
 }

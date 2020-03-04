@@ -40,9 +40,11 @@ ifBlock: IF expr THEN BEGIN statements* END;
 
 elseBlock: ELSE BEGIN statements* END;
 
-whileBlock: WHILE expr DO BEGIN statements (statements)* END ';' ;
+loopBlock: statements (statements)*;
 
-forBlock: FOR forInst BEGIN statements (statements)* END ';';
+whileBlock: WHILE expr DO BEGIN loopBlock END ';' ;
+
+forBlock: FOR forInst BEGIN loopBlock END ';';
 
 read: READ  expr  ';';
 
