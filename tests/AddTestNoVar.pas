@@ -8,3 +8,4 @@ begin
     result := 5.0 + 2.0;
     writeln(result);
 end.
+{Should return 7.0}

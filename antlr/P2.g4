@@ -50,13 +50,13 @@ write: WRITE  expr   ';'; //may need more definitions for write
 
 expr: 
 op='-' e=expr  #negateExpr
-| er=expr op=EXPO er=expr #expoExpr
+| op=EXP e=expr #expExpr
 | NOT e=expr          #notExpr
 | op=SQUAREROOT e=expr #sqrtExpr
 | op=NATLOG e=expr   #natlogExpr
 | op=SINE e=expr    #sinExpr
 | op=COSINE e=expr   #cosineExpr
-| el=expr op=('*' | '/' | '%' ) er=expr #mulDicModExpr
+| el=expr op=(MULT | DIVI | MOD ) er=expr #mulDicModExpr
 | el=expr op=(PLUS | MINUS) er=expr  #addSubExpr
 | el=expr op='=' er=expr  #equalsExpr
 | el=expr op='<' er=expr  #lessExpr
@@ -69,7 +69,7 @@ op='-' e=expr  #negateExpr
 ;
 
 atom:   
-'(' expr ')'        #parenAtom
+'(' e=expr ')'      #parenAtom
 | NUM               #numAtom
 | REAL              #realAtom
 | BOOL              #boolAtom
@@ -129,7 +129,7 @@ SINE : S I N ;
 COSINE : C O S ;
 SQUAREROOT: S Q R T ;
 NATLOG : L N;
-EXPO : E X P;
+EXP : E X P;
 CASE : C A S E;
 OF : O F ;
 CONST : C O N S T;
@@ -139,6 +139,10 @@ DO : D O ;
 TO : T O ;
 PLUS : '+';
 MINUS : '-';
+MULT : '*';
+DIVI: '/';
+MOD: M O D;
+
 
 
 

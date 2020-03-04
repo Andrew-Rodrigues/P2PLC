@@ -39,9 +39,12 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
         Wrapper mapValue = this.visit(ctx.expr());
         memory.put(id, mapValue);
         //System.out.println(id + " was put in table with value: " + mapValue.floatValue);
+        //System.out.println(id + " was put in table with value: " + mapValue.boolValue);
         return mapValue;
     }
 
+
+    //================= ATOM FUNCTIONS ====================//
     @Override
     public Wrapper visitVarNameAtom(P2Parser.VarNameAtomContext ctx)
     {
@@ -61,30 +64,192 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
         return val;
     }
 
+    @Override
+    public Wrapper visitParenAtom(P2Parser.ParenAtomContext ctx)
+    {
+        return this.visit(ctx.e);
+    }
+
+    @Override
+    public Wrapper visitBooleanValAtom(P2Parser.BooleanValAtomContext ctx)
+    {
+        Wrapper val = new Wrapper("boolean", Boolean.parseBoolean(ctx.getText()));
+        return val;
+    }
 
 
 
-    //NUMBER EXPRESSIONS
+
+
+
+    //================= NUMBER FUNCTIONS ====================//
     @Override
     public Wrapper visitNegateExpr(P2Parser.NegateExprContext ctx)
     {
         Wrapper value = this.visit(ctx.e);
-        return new Wrapper(-value.asFloat());
+        return new Wrapper("real", -value.floatValue);
     }
 
-    
+    @Override
+    public Wrapper visitSqrtExpr(P2Parser.SqrtExprContext ctx)
+    {
+        Wrapper value = this.visit(ctx.e);
+        return new Wrapper("real", (float)(Math.sqrt(value.floatValue)));
+    }
+
+    @Override
+    public Wrapper visitNatlogExpr(P2Parser.NatlogExprContext ctx)
+    {
+        Wrapper value = this.visit(ctx.e);
+        return new Wrapper("real", (float)(Math.log(value.floatValue)));
+    }
+
+    @Override
+    public Wrapper visitExpExpr(P2Parser.ExpExprContext ctx)
+    {
+        Wrapper value = this.visit(ctx.e);
+        return new Wrapper("real", (float)(Math.exp(value.floatValue)));
+    }
+
+    @Override
+    public Wrapper visitSinExpr(P2Parser.SinExprContext ctx)
+    {
+        Wrapper value = this.visit(ctx.e);
+        return new Wrapper("real", (float)(Math.sin(value.floatValue)));
+    }
+
+    @Override
+    public Wrapper visitCosineExpr(P2Parser.CosineExprContext ctx)
+    {
+        Wrapper value = this.visit(ctx.e);
+        return new Wrapper("real", (float)(Math.cos(value.floatValue)));
+    }
+
+
     @Override
     public Wrapper visitAddSubExpr(P2Parser.AddSubExprContext ctx)
     {
         Wrapper left = this.visit(ctx.el);
         Wrapper right = this.visit(ctx.er);
 
-        return new Wrapper("real", left.floatValue + right.floatValue);
+        if(ctx.op.getType() == P2Parser.PLUS)
+        {
+            return new Wrapper("real", left.floatValue + right.floatValue);
+        }
+        else if(ctx.op.getType() == P2Parser.MINUS)
+        {
+            return new Wrapper("real", left.floatValue - right.floatValue);
+        }
+        else
+        {
+            throw new RuntimeException("unknown operator: " + P2Parser.tokenNames[ctx.op.getType()]);
+        }
+    }
+
+    @Override
+    public Wrapper visitMulDicModExpr(P2Parser.MulDicModExprContext ctx)
+    {
+        Wrapper left = this.visit(ctx.el);
+        Wrapper right = this.visit(ctx.er);
+
+        if(ctx.op.getType() == P2Parser.MULT)
+        {
+            return new Wrapper("real", left.floatValue * right.floatValue);
+        }
+        else if(ctx.op.getType() == P2Parser.DIVI)
+        {
+            return new Wrapper("real", left.floatValue / right.floatValue);
+        }
+        else if(ctx.op.getType() == P2Parser.MOD)
+        {
+            return new Wrapper("real", left.floatValue % right.floatValue);
+        }
+        else
+        {
+            throw new RuntimeException("unknown operator: " + P2Parser.tokenNames[ctx.op.getType()]);
+        }
     }
       
     
+    //================= BOOLEAN FUNCTIONS ====================//
+    @Override
+    public Wrapper visitAndExpr(P2Parser.AndExprContext ctx)
+    {
+        Wrapper left = this.visit(ctx.el);
+        Wrapper right = this.visit(ctx.er);
+
+        return new Wrapper("boolean", left.boolValue && right.boolValue);
+    }
+
+    @Override
+    public Wrapper visitOrExpr(P2Parser.OrExprContext ctx)
+    {
+        Wrapper left = this.visit(ctx.el);
+        Wrapper right = this.visit(ctx.er);
+
+        return new Wrapper("boolean", left.boolValue || right.boolValue);
+    }
+
+    @Override
+    public Wrapper visitNotExpr(P2Parser.NotExprContext ctx)
+    {
+        Wrapper val = this.visit(ctx.e);
+
+        return new Wrapper("boolean", !val.boolValue);
+    }
+
+    @Override
+    public Wrapper visitGreaterExpr(P2Parser.GreaterExprContext ctx)
+    {
+        Wrapper left = this.visit(ctx.el);
+        Wrapper right = this.visit(ctx.er);
+
+        return new Wrapper("boolean", left.floatValue > right.floatValue);
+    }
+
+    @Override
+    public Wrapper visitLessExpr(P2Parser.LessExprContext ctx)
+    {
+        Wrapper left = this.visit(ctx.el);
+        Wrapper right = this.visit(ctx.er);
+
+        return new Wrapper("boolean", left.floatValue < right.floatValue);
+    }
     
-    //READ-WRITE FUNCTIONS
+    @Override
+    public Wrapper visitGreaterEqExpr(P2Parser.GreaterEqExprContext ctx)
+    {
+        Wrapper left = this.visit(ctx.el);
+        Wrapper right = this.visit(ctx.er);
+
+        return new Wrapper("boolean", left.floatValue >= right.floatValue);
+    }
+
+    @Override
+    public Wrapper visitLessEqExpr(P2Parser.LessEqExprContext ctx)
+    {
+        Wrapper left = this.visit(ctx.el);
+        Wrapper right = this.visit(ctx.er);
+
+        return new Wrapper("boolean", left.floatValue <= right.floatValue);
+    }
+
+    @Override
+    public Wrapper visitEqualsExpr(P2Parser.EqualsExprContext ctx)
+    {
+        Wrapper left = this.visit(ctx.el);
+        Wrapper right = this.visit(ctx.er);
+
+        return new Wrapper("boolean", left.floatValue == right.floatValue);
+    }
+
+
+    
+
+
+
+
+    ////================= READ-WRITE FUNCTIONS ======================//
     @Override
     public Wrapper visitWrite(P2Parser.WriteContext ctx)
     {

@@ -240,14 +240,14 @@ public class P2BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements P2V
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMulDicModExpr(P2Parser.MulDicModExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitExpExpr(P2Parser.ExpExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitExpoExpr(P2Parser.ExpoExprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMulDicModExpr(P2Parser.MulDicModExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

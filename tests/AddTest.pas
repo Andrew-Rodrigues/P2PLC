@@ -8,3 +8,4 @@ begin
     result := val1 + val2;
     writeln(result);
 end.
+{Should return 7.0}

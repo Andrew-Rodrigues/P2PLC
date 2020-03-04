@@ -6,5 +6,6 @@ begin
     val1 := false;
     val2 := true;
     result := val1 AND val2;
-    writeln(val2);
+    writeln(result);
 end.
+{Should return false}

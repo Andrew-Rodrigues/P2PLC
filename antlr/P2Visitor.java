@@ -215,19 +215,19 @@ public interface P2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNotExpr(P2Parser.NotExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code expExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpExpr(P2Parser.ExpExprContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code mulDicModExpr}
 	 * labeled alternative in {@link P2Parser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitMulDicModExpr(P2Parser.MulDicModExprContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code expoExpr}
-	 * labeled alternative in {@link P2Parser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitExpoExpr(P2Parser.ExpoExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code lessEqExpr}
 	 * labeled alternative in {@link P2Parser#expr}.

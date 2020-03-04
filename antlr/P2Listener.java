@@ -353,6 +353,18 @@ public interface P2Listener extends ParseTreeListener {
 	 */
 	void exitNotExpr(P2Parser.NotExprContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code expExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpExpr(P2Parser.ExpExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code expExpr}
+	 * labeled alternative in {@link P2Parser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpExpr(P2Parser.ExpExprContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code mulDicModExpr}
 	 * labeled alternative in {@link P2Parser#expr}.
 	 * @param ctx the parse tree
@@ -364,18 +376,6 @@ public interface P2Listener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMulDicModExpr(P2Parser.MulDicModExprContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code expoExpr}
-	 * labeled alternative in {@link P2Parser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterExpoExpr(P2Parser.ExpoExprContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code expoExpr}
-	 * labeled alternative in {@link P2Parser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitExpoExpr(P2Parser.ExpoExprContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code lessEqExpr}
 	 * labeled alternative in {@link P2Parser#expr}.
