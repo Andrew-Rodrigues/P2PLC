@@ -382,32 +382,31 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
         return null;
     }
     
-    // @Override
-    // public Wrapper visitRead(P2Parser.ReadContext ctx) 
-    // {
-    //     // TODO Auto-generated method stub
-    //     String var = ctx.expr().getText();
-    //     var = var.replaceAll("[()]", "");
+    @Override
+    public Wrapper visitRead(P2Parser.ReadContext ctx) 
+    {
+        // TODO Auto-generated method stub
+        String var = ctx.expr().getText();
+        var = var.replaceAll("[()]", "");
 
-    //     System.out.println(var);
+        System.out.println(var);
 
-    //     // Wrapper temp = memory.get(var);
+        Wrapper temp = memory.get(var);
 
-    //     // if(temp.type.equals("real"))
-    //     // {
-    //     //    float newFloat = myScanner.nextFloat();
-    //     //    temp.floatValue = newFloat;
+        if(temp.type.equals("real"))
+        {
+           float newFloat = myScanner.nextFloat();
+           temp.floatValue = newFloat;
+        }
+        if(temp.type.equals("boolean"))
+        {
+            boolean newBool = myScanner.nextBoolean();
+            temp.boolValue = newBool;
+        } 
 
-    //     // }
-    //     // if(temp.type.equals("boolean"))
-    //     // {
-    //     //     boolean newBool = myScanner.nextBoolean();
-    //     //     temp.boolValue = newBool;
-    //     // } 
+        memory.put(var, temp);
 
-    //     // memory.put(var, temp);
-
-    //     return null;
-    // }
+        return null;
+    }
 
 }
