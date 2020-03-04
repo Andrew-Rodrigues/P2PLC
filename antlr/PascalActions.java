@@ -33,6 +33,81 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
     }
 
     @Override
+    public Wrapper visitVarDef(P2Parser.VarDefContext ctx)
+    {
+        //System.out.println("At VarDef");
+        return super.visitVarDef(ctx);
+    }
+
+    @Override
+    public Wrapper visitVariableInst(P2Parser.VariableInstContext ctx)
+    {
+        //System.out.println("At VariableInst");
+        return super.visitVariableInst(ctx);
+    }
+
+    @Override
+    public Wrapper visitInst(P2Parser.InstContext ctx)
+    {
+        //System.out.println("At Inst");
+        return super.visitInst(ctx);
+    }
+
+    @Override
+    public Wrapper visitVariableDec(P2Parser.VariableDecContext ctx)
+    {
+        //System.out.println("At VariableDec");
+        return super.visitVariableDec(ctx);
+    }
+
+    @Override
+    public Wrapper visitDec(P2Parser.DecContext ctx)
+    {
+        //System.out.println("At Dec");
+        String group = ctx.getText();
+        String type = ctx.expr().getText();
+
+        List<Character> chars = new ArrayList<Character> ();
+        List<String> variables = new ArrayList<String> ();
+
+        for(int i = 0; i < group.length(); i++)
+        {
+            if(group.charAt(i) == ',' || group.charAt(i) == ':')
+            {
+                StringBuilder sb = new StringBuilder(); //builds a string from the chars to be put into string list
+                for (Character ch : chars) 
+                { 
+                    sb.append(ch); 
+                } 
+                String temp = sb.toString();
+                variables.add(temp); //adds the word to the list
+                chars.clear(); //resets the chars list
+            }
+            else
+            {
+                chars.add(group.charAt(i));
+            }
+        }
+
+        for (String temp : variables) 
+        {
+            if(type.equals("real"))
+            {   
+                Wrapper mapValue = new Wrapper("real", 0.0f);
+                memory.put(temp, mapValue);
+            }
+            else if(type.equals("boolean"))
+            {
+                Wrapper mapValue = new Wrapper("boolean", false);
+                memory.put(temp, mapValue);
+            }
+            
+        }
+
+        return null;
+    }
+
+    @Override
     public Wrapper visitAssignment(P2Parser.AssignmentContext ctx)
     {
         String id = ctx.VARNAME().getText();
@@ -266,34 +341,34 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
         return null;
     }
 
-    @Override
-    public Wrapper visitRead(P2Parser.ReadContext ctx) {
-        // TODO Auto-generated method stub
-        String var = ctx.expr().getText();
+    // @Override
+    // public Wrapper visitRead(P2Parser.ReadContext ctx) {
+    //     // TODO Auto-generated method stub
+    //     String var = ctx.expr().getText();
 
-        var = var.replaceAll("[()]", "");
+    //     var = var.replaceAll("[()]", "");
 
         
-        Wrapper temp = memory.get(var);
+    //     Wrapper temp = memory.get(var);
 
 
-        if(temp.type.equals("real")){
-           float newFloat = myScanner.nextFloat();
-           temp.floatValue = newFloat;
+    //     if(temp.type.equals("real")){
+    //        float newFloat = myScanner.nextFloat();
+    //        temp.floatValue = newFloat;
            
 
-        }
-        if(temp.type.equals("boolean"))
-        {
-            boolean newBool = myScanner.nextBoolean();
-            temp.boolValue = newBool;
+    //     }
+    //     if(temp.type.equals("boolean"))
+    //     {
+    //         boolean newBool = myScanner.nextBoolean();
+    //         temp.boolValue = newBool;
 
 
-        } 
+    //     } 
 
-        memory.put(var, temp);
+    //     memory.put(var, temp);
 
-        return null;
-    }
+    //     return null;
+    // }
 
 }
