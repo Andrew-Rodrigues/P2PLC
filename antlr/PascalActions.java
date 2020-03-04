@@ -80,12 +80,12 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
 
         for (String temp : variables) 
         {
-            if(type.equals("real"))
+            if(type.toLowerCase().equals("real"))
             {   
                 Wrapper mapValue = new Wrapper("real", Float.parseFloat(value));
                 memory.put(temp, mapValue);
             }
-            else if(type.equals("boolean"))
+            else if(type.toLowerCase().equals("boolean"))
             {
                 Wrapper mapValue = new Wrapper("boolean", Boolean.parseBoolean(value));
                 memory.put(temp, mapValue);
@@ -135,12 +135,12 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
 
         for (String temp : variables) 
         {
-            if(type.equals("real"))
+            if(type.toLowerCase().equals("real"))
             {   
                 Wrapper mapValue = new Wrapper("real", 0.0f);
                 memory.put(temp, mapValue);
             }
-            else if(type.equals("boolean"))
+            else if(type.toLowerCase().equals("boolean"))
             {
                 Wrapper mapValue = new Wrapper("boolean", false);
                 memory.put(temp, mapValue);
@@ -372,11 +372,11 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
 
         Wrapper temp = memory.get(print);
 
-        if(temp.type.equals("real"))
+        if(temp.type.toLowerCase().equals("real"))
         {
             System.out.println(temp.floatValue);
         }
-        else if(temp.type.equals("boolean"))
+        else if(temp.type.toLowerCase().equals("boolean"))
         {
             System.out.println(temp.boolValue);
         }
@@ -395,12 +395,12 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
 
         Wrapper temp = memory.get(var);
 
-        if(temp.type.equals("real"))
+        if(temp.type.toLowerCase().equals("real"))
         {
            float newFloat = myScanner.nextFloat();
            temp.floatValue = newFloat;
         }
-        if(temp.type.equals("boolean"))
+        if(temp.type.toLowerCase().equals("boolean"))
         {
             boolean newBool = myScanner.nextBoolean();
             temp.boolValue = newBool;
