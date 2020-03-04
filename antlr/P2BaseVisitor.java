@@ -121,6 +121,13 @@ public class P2BaseVisitor<T> extends AbstractParseTreeVisitor<T> implements P2V
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitConditionalBlock(P2Parser.ConditionalBlockContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitLoopBlock(P2Parser.LoopBlockContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

@@ -6,6 +6,8 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
 
     Map<String, Wrapper> memory = new HashMap<String, Wrapper>();
     Scanner myScanner = new Scanner(System.in);
+    boolean ifBool = false;
+    boolean elseBool = false;
 
     @Override
     public Wrapper visitStartProgram(P2Parser.StartProgramContext ctx)
@@ -389,7 +391,7 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
         String var = ctx.expr().getText();
         var = var.replaceAll("[()]", "");
 
-        System.out.println(var);
+        //System.out.println(var);
 
         Wrapper temp = memory.get(var);
 
@@ -438,7 +440,16 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
     @Override
     public Wrapper visitForBlock(P2Parser.ForBlockContext ctx)
     {
-        //Wrapper value = this.visit(ctx.expr());
+        this.visit(ctx.forInst());
+
+        String id = ctx.forInst().VARNAME().getText();
+
+        for(float i = memory.get(id).floatValue; i < memory.get("finish").floatValue; i++)
+        {
+            //System.out.println(i);
+            this.visit(ctx.loopBlock());
+            memory.get(id).floatValue++;
+        }
 
         return null;
     }
@@ -447,17 +458,54 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
     public Wrapper visitForInst(P2Parser.ForInstContext ctx)
     {
         String id = ctx.VARNAME().getText();
-        System.out.println(id);
+        Wrapper start = this.visit(ctx.expr(0)); //gets the starting value of the loop
+        Wrapper finish = this.visit(ctx.expr(1)); //gets the ending value of the loop
 
-        // Wrapper mapValue = this.visit(ctx.expr());
-        // memory.put(id, mapValue);
-        // //System.out.println(id + " was put in table with value: " + mapValue.floatValue);
-        // //System.out.println(id + " was put in table with value: " + mapValue.boolValue);
-        // return mapValue;
+        memory.put(id, start);
+        memory.put("finish", finish); //stores the final loop varaible value in the map
 
         return null;
     }
 
+    //================= IF-ELSE STATMENTS ====================//
+    @Override
+    public Wrapper visitIfBlock(P2Parser.IfBlockContext ctx)
+    {
+        Wrapper value = this.visit(ctx.expr());
+
+        //System.out.println("visited if");
+
+        ifBool = value.boolValue;
+
+        if(ifBool)
+        {
+            this.visit(ctx.conditionalBlock());
+            ifBool = false;
+        }
+        else
+        {
+            elseBool = true;
+            return null;
+        }
+
+        return null;
+    }
+
+    @Override
+    public Wrapper visitElseBlock(P2Parser.ElseBlockContext ctx)
+    {
+        //System.out.println("visited else");
+        if(elseBool)
+        {
+            this.visit(ctx.conditionalBlock());
+            elseBool = false;
+        }
+        else
+        {
+            return null;
+        }
+        return null;
+    }
     
 
 

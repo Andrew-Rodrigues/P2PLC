@@ -36,9 +36,11 @@ assignment: VARNAME ':=' expr ';';
 
 forInst: VARNAME ':=' expr TO expr DO;
 
-ifBlock: IF expr THEN BEGIN statements* END;
+ifBlock: IF expr THEN BEGIN conditionalBlock END;
 
-elseBlock: ELSE BEGIN statements* END;
+elseBlock: ELSE BEGIN conditionalBlock END;
+
+conditionalBlock: statements*;
 
 loopBlock: statements (statements)*;
 
@@ -46,9 +48,9 @@ whileBlock: WHILE expr DO BEGIN loopBlock END ';' ;
 
 forBlock: FOR forInst BEGIN loopBlock END ';';
 
-read: READ  expr  ';';
+read: READ expr ';';
 
-write: WRITE  expr   ';'; //may need more definitions for write 
+write: WRITE expr ';'; //may need more definitions for write 
 
 expr: 
 op='-' e=expr  #negateExpr
