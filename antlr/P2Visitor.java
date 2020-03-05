@@ -34,6 +34,60 @@ public interface P2Visitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunction(P2Parser.FunctionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link P2Parser#funcAssignment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFuncAssignment(P2Parser.FuncAssignmentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link P2Parser#functionCall}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionCall(P2Parser.FunctionCallContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link P2Parser#funcParams}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFuncParams(P2Parser.FuncParamsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link P2Parser#funcVarDef}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFuncVarDef(P2Parser.FuncVarDefContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link P2Parser#funcVarInst}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFuncVarInst(P2Parser.FuncVarInstContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link P2Parser#funcInst}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFuncInst(P2Parser.FuncInstContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link P2Parser#funcParamDec}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFuncParamDec(P2Parser.FuncParamDecContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link P2Parser#funcDec}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFuncDec(P2Parser.FuncDecContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link P2Parser#functionBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionBlock(P2Parser.FunctionBlockContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link P2Parser#procedure}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

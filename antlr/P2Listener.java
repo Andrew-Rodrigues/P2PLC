@@ -47,6 +47,96 @@ public interface P2Listener extends ParseTreeListener {
 	 */
 	void exitFunction(P2Parser.FunctionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link P2Parser#funcAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void enterFuncAssignment(P2Parser.FuncAssignmentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link P2Parser#funcAssignment}.
+	 * @param ctx the parse tree
+	 */
+	void exitFuncAssignment(P2Parser.FuncAssignmentContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link P2Parser#functionCall}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionCall(P2Parser.FunctionCallContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link P2Parser#functionCall}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionCall(P2Parser.FunctionCallContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link P2Parser#funcParams}.
+	 * @param ctx the parse tree
+	 */
+	void enterFuncParams(P2Parser.FuncParamsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link P2Parser#funcParams}.
+	 * @param ctx the parse tree
+	 */
+	void exitFuncParams(P2Parser.FuncParamsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link P2Parser#funcVarDef}.
+	 * @param ctx the parse tree
+	 */
+	void enterFuncVarDef(P2Parser.FuncVarDefContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link P2Parser#funcVarDef}.
+	 * @param ctx the parse tree
+	 */
+	void exitFuncVarDef(P2Parser.FuncVarDefContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link P2Parser#funcVarInst}.
+	 * @param ctx the parse tree
+	 */
+	void enterFuncVarInst(P2Parser.FuncVarInstContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link P2Parser#funcVarInst}.
+	 * @param ctx the parse tree
+	 */
+	void exitFuncVarInst(P2Parser.FuncVarInstContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link P2Parser#funcInst}.
+	 * @param ctx the parse tree
+	 */
+	void enterFuncInst(P2Parser.FuncInstContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link P2Parser#funcInst}.
+	 * @param ctx the parse tree
+	 */
+	void exitFuncInst(P2Parser.FuncInstContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link P2Parser#funcParamDec}.
+	 * @param ctx the parse tree
+	 */
+	void enterFuncParamDec(P2Parser.FuncParamDecContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link P2Parser#funcParamDec}.
+	 * @param ctx the parse tree
+	 */
+	void exitFuncParamDec(P2Parser.FuncParamDecContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link P2Parser#funcDec}.
+	 * @param ctx the parse tree
+	 */
+	void enterFuncDec(P2Parser.FuncDecContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link P2Parser#funcDec}.
+	 * @param ctx the parse tree
+	 */
+	void exitFuncDec(P2Parser.FuncDecContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link P2Parser#functionBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionBlock(P2Parser.FunctionBlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link P2Parser#functionBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionBlock(P2Parser.FunctionBlockContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link P2Parser#procedure}.
 	 * @param ctx the parse tree
 	 */

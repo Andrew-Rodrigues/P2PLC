@@ -5,6 +5,7 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
 {
 
     Map<String, Wrapper> memory = new HashMap<String, Wrapper>();
+
     Scanner myScanner = new Scanner(System.in);
     boolean ifBool = false;
     boolean elseBool = false;
@@ -556,10 +557,12 @@ public class PascalActions extends P2BaseVisitor<Wrapper>
     public Wrapper visitFunction(P2Parser.FunctionContext ctx)
     {
         //System.out.println("visited function");
-
+        String functionName = ctx.expr(0).getText();
+        String returnType = ctx.expr(1).getText();
+        //System.out.println(functionName);
+        //System.out.println(returnType);
 
         return null;
     }
-    
 
 }

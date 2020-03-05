@@ -14,7 +14,7 @@ public class Wrapper
     public Wrapper()
     {
         this.name = "";
-        this.name = "";
+        this.type = "";
         this.floatValue = 0.0f;
         this.boolValue = false;
     }

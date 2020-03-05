@@ -18,10 +18,25 @@ assignment
 | write
 | breakStatement
 | continueStatement
+| funcAssignment
 ;
 
-function: FUNCTION expr '('variableDec')' ':' expr ';' varDef? BEGIN statements (statements)* END ';';
 
+//FUNCTION STUFF
+function: FUNCTION expr '('funcParamDec')' ':' expr ';' varDef? BEGIN functionBlock END ';';
+funcAssignment: VARNAME ':=' functionCall ';';
+functionCall: VARNAME '(' funcParams ')';
+funcParams: VARNAME (',' VARNAME)* ;
+funcVarDef: (VAR (funcVarInst?  funcParamDec?));
+funcVarInst: funcInst+;
+funcInst: (VARNAME (',' VARNAME)* ':' expr '=' expr ';');
+funcParamDec: funcDec+ ;
+funcDec: (VARNAME (',' VARNAME)* ':' expr ';'?) ;
+functionBlock: statements (statements)*;
+
+
+
+//PROCEDURE STUFF
 procedure: PROCEDURE expr '(' variableDec* ')' ';' BEGIN statements (statements)* END ';' ;
 
 start: PROGRAM VARNAME ';';

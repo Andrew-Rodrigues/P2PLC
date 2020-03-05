@@ -1,4 +1,4 @@
-program exFunction;
+program FunctionTest;
 var
    a, b, ret : real;
 
@@ -10,10 +10,13 @@ var
 
 begin
    if (num1 > num2) then
-      result := num1
-   
+      begin
+         result := num1;
+      end
    else
-      result := num2;
+      begin
+         result := num2;
+      end
    max := result;
 end;
 
